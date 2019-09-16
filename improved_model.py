@@ -71,4 +71,13 @@ matplotlib.pyplot.ylim(0, 99)
 matplotlib.pyplot.xlim(0, 99)
 matplotlib.pyplot.scatter(agents[0][1],agents[0][0])
 matplotlib.pyplot.scatter(agents[1][1],agents[1][0])
+
+# Make agent furthest east, ie. greatest x-value, a different colour
+# max(agents, key=operator.itemgetter(1))
+
+furthest_east = max(agents, key=operator.itemgetter(1))
+print(furthest_east)
+
+matplotlib.pyplot.scatter(furthest_east[1], furthest_east[0], color='red')
+
 matplotlib.pyplot.show()
