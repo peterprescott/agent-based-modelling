@@ -2,13 +2,11 @@ import random
 
 agents = []
 
-# 
+# place zero-th agent
 
-y0 = random.randint(0,99)
+agent0 = [random.randint(0,99),random.randint(0,99)]
 
-x0 = random.randint(0,99)
-
-agents.append([y0,x0])
+agents.append(agent0)
 
 # Change y and x based on random numbers.
 
@@ -31,10 +29,9 @@ print(agents[0])
 
 # Make a second set of y and xs, and make these change randomly as well.
 
-y1 = random.randint(0,99)
-x1 = random.randint(0,99)
+agent1 = [random.randint(0,99),random.randint(0,99)]
 
-agents.append([y1,x1])
+agents.append(agent1)
 
 y1_direction = random.random()
 x1_direction = random.random()
