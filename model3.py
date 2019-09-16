@@ -1,6 +1,10 @@
 import random
 import operator
 import matplotlib.pyplot
+import time
+
+start = time.perf_counter()
+
 
 num_of_agents = 10
 num_of_iterations = 100
@@ -29,9 +33,14 @@ def distance_between(m,n):
     distance = distance_squared**(1/2)
     return distance
     
-for i in range(num_of_agents):
-    for j in range (num_of_agents):
+
+for i in range(num_of_agents - 1):
+    for j in range (i + 1, num_of_agents):
         print(distance_between(i,j))
+
+end = time.perf_counter()
+
+print("time = " + str(end - start))
 
 matplotlib.pyplot.ylim(0, 99)
 matplotlib.pyplot.xlim(0, 99)
