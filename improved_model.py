@@ -66,3 +66,9 @@ print(max(agents, key=operator.itemgetter(0)))
 
 # Print Agent with greatest x-value
 print(max(agents, key=operator.itemgetter(1)))
+
+matplotlib.pyplot.ylim(0, 99)
+matplotlib.pyplot.xlim(0, 99)
+matplotlib.pyplot.scatter(agents[0][1],agents[0][0])
+matplotlib.pyplot.scatter(agents[1][1],agents[1][0])
+matplotlib.pyplot.show()
