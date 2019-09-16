@@ -13,10 +13,19 @@ num_of_iterations = 100
 for i in range(num_of_agents):
     agents.append([random.randint(0,100),random.randint(0,100)])
 
+# plot arena
+
+matplotlib.pyplot.ylim(0, 99)
+matplotlib.pyplot.xlim(0, 99)
+
+
 # move agents
 
 ## for each iteration
 for i in range(num_of_iterations):
+    ##
+    for k in range(num_of_agents):
+        matplotlib.pyplot.scatter(agents[k][1],agents[k][0])
 
     ## for each agent
     for j in range(num_of_agents):
@@ -31,11 +40,8 @@ for i in range(num_of_iterations):
         else:
             agents[j][1] -= 1
 
-matplotlib.pyplot.ylim(-100, 200)
-matplotlib.pyplot.xlim(-100, 200)
-
-for i in range(num_of_agents):
-    matplotlib.pyplot.scatter(agents[i][1],agents[i][0])
+        agents[j][0] = agents[j][0] % 100
+        agents[j][1] = agents[j][1] % 100
 
 
 # Make agent furthest east, ie. greatest x-value, a different colour
