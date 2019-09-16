@@ -24,10 +24,14 @@ for j in range(num_of_iterations):
         else:
             agents[i][1] = (agents[i][1] - 1) % 100
 
-'''
-answer = (((agents[0][0] - agents[1][0])**2) + ((agents[0][1] - agents[1][1])**2))**0.5
-print(answer)
-'''
+def distance_between(m,n):
+    distance_squared = (agents[m][1]-agents[n][1])**2 + (agents[m][0]-agents[n][0])**2
+    distance = distance_squared**(1/2)
+    return distance
+    
+for i in range(num_of_agents):
+    for j in range (num_of_agents):
+        print(distance_between(i,j))
 
 matplotlib.pyplot.ylim(0, 99)
 matplotlib.pyplot.xlim(0, 99)
