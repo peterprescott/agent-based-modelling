@@ -2,11 +2,11 @@ import random
 
 # Make a y variable.
 
-y0 = 50
+y0 = random.randint(0,99)
 
 # Make a x variable.
 
-x0 = 50
+x0 = random.randint(0,99)
 
 # Change y and x based on random numbers.
 
@@ -29,8 +29,8 @@ print(x0,y0)
 
 # Make a second set of y and xs, and make these change randomly as well.
 
-y1 = 50
-x1 = 50
+y1 = random.randint(0,99)
+x1 = random.randint(0,99)
 
 y1_direction = random.random()
 x1_direction = random.random()
