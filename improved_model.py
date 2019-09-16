@@ -1,5 +1,6 @@
 import random
 import operator 
+import matplotlib.pyplot
 
 agents = []
 
@@ -64,4 +65,4 @@ print(distance)
 print(max(agents, key=operator.itemgetter(0)))
 
 # Print Agent with greatest x-value
-print(max(agents, key=operator.itemgetter(1))
+print(max(agents, key=operator.itemgetter(1)))
