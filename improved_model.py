@@ -4,11 +4,13 @@ import matplotlib.pyplot
 
 agents = []
 
-# place zero-th agent
+num_of_agents = 10
 
-agent0 = [random.randint(0,99),random.randint(0,99)]
+# add full number of agents in one smooth move
 
-agents.append(agent0)
+for i in range(num_of_agents):
+    agents.append([random.randint(0,100),random.randint(0,100)])
+
 
 # Change y and x based on random numbers.
 
@@ -31,9 +33,6 @@ print(agents[0])
 
 # Make a second set of y and xs, and make these change randomly as well.
 
-agent1 = [random.randint(0,99),random.randint(0,99)]
-
-agents.append(agent1)
 
 y1_direction = random.random()
 x1_direction = random.random()
