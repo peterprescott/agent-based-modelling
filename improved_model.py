@@ -1,4 +1,5 @@
 import random
+import operator 
 
 agents = []
 
@@ -58,3 +59,9 @@ distance_squared = (agents[1][1]-agents[0][1])**2 + (agents[0][1]-agents[0][0])*
 distance = distance_squared**(1/2)
 
 print(distance)
+
+# Print Agent with greatest y-value
+print(max(agents, key=operator.itemgetter(0)))
+
+# Print Agent with greatest x-value
+print(max(agents, key=operator.itemgetter(1))
