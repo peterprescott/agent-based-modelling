@@ -28,9 +28,12 @@ for j in range(num_of_iterations):
         else:
             agents[i][1] = (agents[i][1] - 1) % 100
 
+distances = []
+
 def distance_between(m,n):
     distance_squared = (agents[m][1]-agents[n][1])**2 + (agents[m][0]-agents[n][0])**2
     distance = distance_squared**(1/2)
+    distances.append(distance)
     return distance
     
 
@@ -40,10 +43,17 @@ for i in range(num_of_agents - 1):
 
 end = time.perf_counter()
 
+# print time taken for calculations
 print("time = " + str(end - start))
 
+# find the maximum and minimum distances between your agents
+print(max(distances))
+print(min(distances))
+
+# show scatter graph
 matplotlib.pyplot.ylim(0, 99)
 matplotlib.pyplot.xlim(0, 99)
 for i in range(num_of_agents):
     matplotlib.pyplot.scatter(agents[i][1],agents[i][0])
 matplotlib.pyplot.show()
+
