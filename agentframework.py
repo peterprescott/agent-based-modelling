@@ -29,9 +29,3 @@ class Agent:
 
         return [self.y, self.x]
 
-test = Agent(50,50)
-
-for i in range(0, 100):
-    test.move()
-
-print(test)
