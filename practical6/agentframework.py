@@ -4,12 +4,17 @@ class Agent:
 
     '''An Agent that takes a random walk through two-dimensions'''
     
-    def __init__(self, env, y = random.randint(0,99), x = random.randint(0,99)):
-
-        self._y = y
-        self._x = x
+    def __init__(self, env):
 
         self.environment = env
+        self.env_height = len(env)
+        self.env_width = len(env[0])
+
+        self._y = random.randint(0, self.env_height-1)
+        self._x = random.randint(0, self.env_width-1)
+
+
+
         self.store = 0
 
         return
@@ -19,7 +24,7 @@ class Agent:
     def get_x(self):
         return self._x
 
-    def set_x(self, value = random.randint(0,99)):
+    def set_x(self, value):
         self._x = value
 
     def del_x(self):
@@ -30,7 +35,7 @@ class Agent:
     def get_y(self):
         return self._y
 
-    def set_y(self, value = random.randint(0,99)):
+    def set_y(self, value):
         self._y = value
 
     def del_y(self):
@@ -48,14 +53,14 @@ class Agent:
     def move(self):
 
         if random.random() < 0.5:
-            self.y = (self.y + 1) % 100
+            self.y = (self.y + 1) % self.env_height
         else:
-            self.y = (self.y - 1) % 100
+            self.y = (self.y - 1) % self.env_height
 
         if random.random() < 0.5:
-            self.x = (self.x + 1) % 100
+            self.x = (self.x + 1) % self.env_width
         else:
-            self.x = (self.x - 1) % 100
+            self.x = (self.x - 1) % self.env_width
 
         return [self.y, self.x]
 

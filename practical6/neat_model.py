@@ -67,8 +67,8 @@ print("Min Distance between two agents is " + str(min(distances)))
 
 # plot the agents
 
-matplotlib.pyplot.xlim(0, 99)
-matplotlib.pyplot.ylim(0, 99)
+matplotlib.pyplot.xlim(0, agents[0].env_width)
+matplotlib.pyplot.ylim(0, agents[0].env_height)
 matplotlib.pyplot.imshow(environment)
 for i in range(num_of_agents):
     matplotlib.pyplot.scatter(agents[i].x,agents[i].y)

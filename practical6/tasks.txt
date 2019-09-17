@@ -6,7 +6,7 @@ DONE -- Can you get the model to append the data to the file, rather than cleari
 
 DONE (using __repr__) -- Can you override __str__(self) in the agents, as mentioned in the lecture on classes, so that they display this information information about their location and stores when printed?
 
-Can you get the agents to wander around the full environment by finding out the size of environment inside the agents, and using the size when you randomize their starting locations and deal with the boundary conditions?
+DONE -- Can you get the agents to wander around the full environment by finding out the size of environment inside the agents, and using the size when you randomize their starting locations and deal with the boundary conditions?
 
 At the moment, the agents only eat 10 units at a time. This will leave a few units in each area, even if intensly grazed. Can you get them to eat the last few bits, if there's less than 10 left, without leaving negative values?
 
