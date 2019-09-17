@@ -96,7 +96,9 @@ for row in environment:
 
 # a second file that writes out the total amount stored by all the agents on a line
 
-store_file = open('env_files\\' + unique + 'store_file.txt', 'w')
+store_file = open('store_file.txt', 'a')
+
+store_file.write('\n\n' + unique + '\n')
+
 for i in range(num_of_agents):
-#    store_file.write('{"' + str(i) + '":"' + str(agents[i].store) + '"},')
     store_file.write(str(agents[i]) + ',')
