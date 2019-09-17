@@ -59,3 +59,10 @@ class Agent:
 
         return [self.y, self.x]
 
+    def eat(self): # can you make it eat what is left?
+
+        if self.environment[self.y][self.x] > 10:
+
+            self.environment[self.y][self.x] -= 10
+
+            self.store += 10
