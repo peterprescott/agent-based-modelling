@@ -3,7 +3,6 @@ import csv
 
 ## https://www.geog.leeds.ac.uk/courses/computing/study/core-python-phd/part7/index.html
 environment = []
-rowlist = []
 
 dataset = open('in.txt', newline='')
 reader = csv.reader(dataset)
