@@ -5,6 +5,7 @@ import random
 import operator
 import matplotlib.pyplot
 import agentframework
+import csv
 
 # define pythagorean distance calculator
 
@@ -24,10 +25,24 @@ num_of_iterations = int(eval(input("And how many steps shall they each take?\n")
 print("Right, " + str(num_of_iterations) + " iterations. Here we go!")
 agents = []
 
-# make the agents
+# read environment data
+
+environment = []
+
+dataset = open('in.txt', newline='')
+reader = csv.reader(dataset)
+for row in reader:
+    rowlist = []
+    for numeric_string in row:
+        value = int(numeric_string)
+        rowlist.append(value)
+    environment.append(rowlist)
+dataset.close() 
+
+# make the agents, passing in environment
 
 for i in range(num_of_agents):
-    agents.append(agentframework.Agent())
+    agents.append(agentframework.Agent(env = environment))
 
 
 # move the agents
