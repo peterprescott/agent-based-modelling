@@ -74,6 +74,12 @@ class Agent:
 
         if self.environment[self.y][self.x] <= 10:
 
-            self. store += self.environment[self.y][self.x]
+            self.store += self.environment[self.y][self.x]
 
             self.environment[self.y][self.x]
+
+        if self.store > 100:
+
+            self.environment[self.y][self.x] += self.store
+
+            self.store = 0
