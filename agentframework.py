@@ -4,7 +4,7 @@ class Agent:
 
     '''An Agent that takes a random walk through two-dimensions'''
     
-    def __init__(self, y=50, x=50):
+    def __init__(self, y = random.randint(0,99), x = random.randint(0,99)):
 
         self.y = y
         self.x = x
@@ -18,14 +18,14 @@ class Agent:
     def move(self):
 
         if random.random() < 0.5:
-            self.y += 1
+            self.y = (self.y + 1) % 100
         else:
-            self.y -= 1
+            self.y = (self.y - 1) % 100
 
         if random.random() < 0.5:
-            self.x += 1
+            self.x = (self.x + 1) % 100
         else:
-            self.x -= 1
+            self.x = (self.x - 1) % 100
 
         return [self.y, self.x]
 
