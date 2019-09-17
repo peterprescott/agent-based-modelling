@@ -50,6 +50,8 @@ for i in range(num_of_agents):
 for j in range(num_of_iterations):
     for i in range(num_of_agents):
         agents[i].move()
+        agents[i].eat()
+
 
 # measure distance between the agents
 
@@ -66,6 +68,7 @@ print("Min Distance between two agents is " + str(min(distances)))
 
 matplotlib.pyplot.xlim(0, 99)
 matplotlib.pyplot.ylim(0, 99)
+matplotlib.pyplot.imshow(environment)
 for i in range(num_of_agents):
-    matplotlib.pyplot.scatter(agents[i].x, agents[i].y)
+    matplotlib.pyplot.scatter(agents[i].x,agents[i].y)
 matplotlib.pyplot.show()
