@@ -6,14 +6,41 @@ class Agent:
     
     def __init__(self, y = random.randint(0,99), x = random.randint(0,99)):
 
-        self.y = y
-        self.x = x
+        self._y = y
+        self._x = x
 
         return
+
+# do the decent object oriented thing: https://docs.python.org/3/library/functions.html#property
+
+    def get_x(self):
+        return self._x
+
+    def set_x(self, value = random.randint(0,99)):
+        self._x = value
+
+    def del_x(self):
+        del self._x
+
+    x = property(get_x, set_x, del_x, "I'm the 'x' property.")
+
+    def get_y(self):
+        return self._y
+
+    def set_y(self, value = random.randint(0,99)):
+        self._y = value
+
+    def del_y(self):
+        del self._y
+
+    y = property(get_y, set_y, del_y, "I'm the 'y' property.")
+
+
 
     def __repr__(self):
 
         return "[" + str(self.y) + ", " + str(self.x) + "]"
+
 
     def move(self):
 
