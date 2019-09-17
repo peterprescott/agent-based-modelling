@@ -98,4 +98,5 @@ for row in environment:
 
 store_file = open('env_files\\' + unique + 'store_file.txt', 'w')
 for i in range(num_of_agents):
-    store_file.write('{"' + str(i) + '":"' + str(agents[i].store) + '"},')
+#    store_file.write('{"' + str(i) + '":"' + str(agents[i].store) + '"},')
+    store_file.write(str(agents[i]) + ',')

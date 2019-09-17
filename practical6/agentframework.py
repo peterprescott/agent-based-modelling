@@ -42,7 +42,7 @@ class Agent:
 
     def __repr__(self):
 
-        return "[" + str(self.y) + ", " + str(self.x) + "]"
+        return "{'store':'" + str(self.store) + "','y':'" + str(self.y) + "','x':'" + str(self.x) + "'}"
 
 
     def move(self):
