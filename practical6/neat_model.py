@@ -6,6 +6,7 @@ import operator
 import matplotlib.pyplot
 import agentframework
 import csv
+import datetime
 
 # define pythagorean distance calculator
 
@@ -72,3 +73,23 @@ matplotlib.pyplot.imshow(environment)
 for i in range(num_of_agents):
     matplotlib.pyplot.scatter(agents[i].x,agents[i].y)
 matplotlib.pyplot.show()
+
+# write out environment as a file at the end
+
+## create unique data stamp for filename
+
+now=str(datetime.datetime.now())
+
+unique=''
+
+for char in now:
+
+    if char in '0123456789':
+        unique += char
+
+
+env_file = open('env_files\\' + unique + 'env_file.csv', 'w')
+for row in environment:
+    for value in row:
+        env_file.write(str(value)+',')
+    env_file.write('\n')
