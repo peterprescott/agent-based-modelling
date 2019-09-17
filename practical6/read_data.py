@@ -1,20 +1,19 @@
 import matplotlib.pyplot
+import csv
 
 ## https://www.geog.leeds.ac.uk/courses/computing/study/core-python-phd/part7/index.html
-dataset = open("in.txt")
+environment = []
+rowlist = []
 
+dataset = open('in.txt', newline='')
+reader = csv.reader(dataset)
+for row in reader:
+    rowlist = []
+    for numeric_string in row:
+        value = int(numeric_string)
+        rowlist.append(value)
+    environment.append(rowlist)
+dataset.close() 
 
-f = open("in.txt")
-data = []
-for line in f:
-    parsed_line = str.split(line,",")
-    data_line = []
-    for word in parsed_line:
-        data_line.append(float(word))
-    data.append(data_line)
-
-f.close()
-
-
-matplotlib.pyplot.imshow(data)
+matplotlib.pyplot.imshow(environment)
 matplotlib.pyplot.show()
