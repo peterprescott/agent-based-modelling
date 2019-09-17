@@ -21,8 +21,10 @@ class Agent:
             self.y += 1
         else:
             self.y -= 1
+
         if random.random() < 0.5:
             self.x += 1
+        else:
             self.x -= 1
 
         return [self.y, self.x]
