@@ -1,6 +1,9 @@
 
 # import the libraries
 
+from sys import argv
+script, num_of_agents, num_of_iterations, neighbourhood = argv
+
 import random
 import operator
 import matplotlib.pyplot
@@ -13,11 +16,11 @@ import agentframework
 
 # set variables
 
-num_of_agents = int(eval(input("How many agents shall we have?\n")))
+num_of_agents = int(eval(num_of_agents))
 print("Okay, " + str(num_of_agents) + " agents.")
-num_of_iterations = int(eval(input("And how many steps shall they each take?\n")))
+num_of_iterations = int(eval(num_of_iterations))
 print("Right, " + str(num_of_iterations) + " iterations.")
-neighbourhood = int(eval(input("And give us an integer to define how big a 'neighbourhood' is.\n")))
+neighbourhood = int(eval(neighbourhood))
 print(f"Neighbourhood size: {neighbourhood}. Okay, let's go!")
 
 agents = []
