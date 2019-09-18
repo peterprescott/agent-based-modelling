@@ -4,6 +4,9 @@
 from sys import argv
 import random
 import operator
+import tkinter
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot
 import matplotlib.animation
 import csv
@@ -116,18 +119,38 @@ end = time.perf_counter()
 time_result = "time = " + str(end - start)
 
 
-# plot the agents (unless argv withholds permission)
+# define figure and animation run()
 
-
-if plot != "0":
-
-    fig = matplotlib.pyplot.figure(figsize=(7, 7))
+fig = matplotlib.pyplot.figure(figsize=(7, 7))
     
-    animation = matplotlib.animation.FuncAnimation(fig, update,interval=1, repeat=False, frames=num_of_iterations)
+    # ~ animation = matplotlib.animation.FuncAnimation(fig, update,interval=1, repeat=False, frames=num_of_iterations)
 
-    matplotlib.pyplot.show()
+    # ~ matplotlib.pyplot.show()
 
 
+def run():
+    
+    animation = matplotlib.animation.FuncAnimation(fig, update, frames=num_of_iterations, repeat=False)
+    canvas.show()
+
+root = tkinter.Tk()
+root.wm_title("Model")
+canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
+canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+
+
+menu_bar = tkinter.Menu(root)
+root.config(menu=menu_bar)
+model_menu = tkinter.Menu(menu_bar)
+menu_bar.add_cascade(label="Model", menu=model_menu)
+model_menu.add_command(label="Run model", command=run)
+
+tkinter.mainloop()
+
+
+
+
+# tkinter code
 
 
 # write out environment as a file at the end
@@ -161,3 +184,4 @@ time_file.write(f'\n\n num_of_agents = {num_of_agents}, num_of_iterations = {num
 for i in range(num_of_agents):
     store_file.write(str(agents[i]) + ',')
 
+tkinter.mainloop()
