@@ -5,3 +5,6 @@
 
  num_of_agents = 5, num_of_iterations = 100, neighbourhood = 10
  time = 0.048893061000000015
+
+ num_of_agents = 5, num_of_iterations = 10000, neighbourhood = 10
+ time = 0.053847271999999946
