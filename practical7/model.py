@@ -101,7 +101,7 @@ for j in range(num_of_iterations):
 
 end = time.perf_counter()
 
-print("time = " + str(end - start))
+time_result = "time = " + str(end - start)
 
 
 # plot the agents
@@ -137,8 +137,10 @@ for row in environment:
 # a second file that writes out the total amount stored by all the agents on a line
 
 store_file = open('store_file.txt', 'a')
-
 store_file.write('\n\n' + unique + '\n')
+
+time_file = open('time_file.txt', 'a')
+time_file.write(f'\n\n num_of_agents = {num_of_agents}, num_of_iterations = {num_of_iterations}, neighbourhood = {neighbourhood}\n {time_result}')
 
 for i in range(num_of_agents):
     store_file.write(str(agents[i]) + ',')
