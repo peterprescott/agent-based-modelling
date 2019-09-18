@@ -4,27 +4,24 @@
 import random
 import operator
 import matplotlib.pyplot
-import agentframework
 import csv
 import datetime
 
-# define pythagorean distance calculator
+# import the agentframework
 
-distances = []
-
-def distance_between(m,n):
-    distance_squared = (agents[m].x-agents[n].x)**2 + (agents[m].y-agents[n].y)**2
-    distance = distance_squared**(1/2)
-    distances.append(distance)
-    return distance
+import agentframework
 
 # set variables
 
 num_of_agents = int(eval(input("How many agents shall we have?\n")))
 print("Okay, " + str(num_of_agents) + " agents.")
 num_of_iterations = int(eval(input("And how many steps shall they each take?\n")))
-print("Right, " + str(num_of_iterations) + " iterations. Here we go!")
+print("Right, " + str(num_of_iterations) + " iterations.")
+neighbourhood = int(eval(input("And give us an integer to define how big a 'neighbourhood' is.\n")))
+print(f"Neighbourhood size: {neighbourhood}. Okay, let's go!")
+
 agents = []
+
 
 # read environment data
 
@@ -43,9 +40,7 @@ dataset.close()
 # make the agents, passing in environment
 
 for i in range(num_of_agents):
-    agents.append(agentframework.Agent(env = environment, agent_list = agents))
-
-print(agents[0].agent_list[1])
+    agents.append(agentframework.Agent(env = environment, agents = agents))
 
 # move the agents
 
@@ -53,18 +48,7 @@ for j in range(num_of_iterations):
     for i in range(num_of_agents):
         agents[i].move()
         agents[i].eat()
-
-
-# measure distance between the agents
-
-for i in range(num_of_agents - 1):
-    for j in range (i + 1, num_of_agents):
-        distance_between(i,j)
-
-# find the maximum and minimum distances between your agents
-
-print("Max Distance between two agents is " + str(max(distances)))
-print("Min Distance between two agents is " + str(min(distances)))
+        agents[i].share_with_neighbours(neighbourhood)
 
 # plot the agents
 
@@ -79,9 +63,9 @@ matplotlib.pyplot.show()
 
 ## create unique data stamp for filename
 
-now=str(datetime.datetime.now())
+now = str(datetime.datetime.now())
 
-unique=''
+unique = ''
 
 for char in now:
 
@@ -103,3 +87,4 @@ store_file.write('\n\n' + unique + '\n')
 
 for i in range(num_of_agents):
     store_file.write(str(agents[i]) + ',')
+

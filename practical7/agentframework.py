@@ -1,10 +1,12 @@
 import random
 
+# define Agent class
+
 class Agent:
 
     '''An Agent that takes a random walk through two-dimensions'''
     
-    def __init__(self, env, agent_list):
+    def __init__(self, env, agents):
 
         self.environment = env
         self.env_height = len(env)
@@ -15,11 +17,11 @@ class Agent:
 
         self.store = 0
 
-        self.agent_list = agent_list
+        self.agents = agents
 
         return
 
-# do the decent object oriented thing: https://docs.python.org/3/library/functions.html#property
+    ## do the decent object oriented thing: https://docs.python.org/3/library/functions.html#property
 
     def get_x(self):
         return self._x
@@ -44,11 +46,13 @@ class Agent:
     y = property(get_y, set_y, del_y, "I'm the 'y' property.")
 
 
+    ## define representation, so that when you print an agent you see something intelligible.
 
     def __repr__(self):
 
         return "{'store':'" + str(self.store) + "','y':'" + str(self.y) + "','x':'" + str(self.x) + "'}"
 
+    ## define an agent's move, ie. a random unit-sized step in each of two dimensions
 
     def move(self):
 
@@ -63,6 +67,8 @@ class Agent:
             self.x = (self.x - 1) % self.env_width
 
         return [self.y, self.x]
+
+    ## define an agent's eating of resource from environment
 
     def eat(self): # can you make it eat what is left?
 
@@ -83,3 +89,23 @@ class Agent:
             self.environment[self.y][self.x] += self.store
 
             self.store = 0
+
+        return
+
+    ## define pythagorean distance calculator
+
+    def distance_between(self,agent):
+        distance_squared = (self.x-agent.x)**2 + (self.y-agent.y)**2
+        distance = distance_squared**(1/2)
+        return distance
+
+    ## define an agent's sharing of 'eaten' resource with neighbour agents within neighbourhood proximity range
+
+    def share_with_neighbours(self, neighbourhood):
+
+        for agent in self.agents:
+            distance = self.distance_between(agent)
+            if distance <= neighbourhood:
+                self.store = agent.store = (self.store + agent.store)/2
+
+        return
