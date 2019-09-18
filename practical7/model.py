@@ -23,11 +23,12 @@ import agentframework
 
 while True:
     try:
-        script, num_of_agents, num_of_iterations, neighbourhood = argv
+        script, plot, num_of_agents, num_of_iterations, neighbourhood = argv
         break
     except ValueError:
         print('Oops, you forgot to define parameters from command line...\nFear not--we will just set the defaults.')
         # set defaults
+        plot = 0
         num_of_agents = 100
         num_of_iterations = 100
         neighbourhood = 10
@@ -105,16 +106,17 @@ print("time = " + str(end - start))
 
 # plot the agents
 
-matplotlib.pyplot.xlim(0, agents[0].env_width)
-matplotlib.pyplot.ylim(0, agents[0].env_height)
-matplotlib.pyplot.imshow(environment)
-for i in range(num_of_agents):
-    matplotlib.pyplot.scatter(agents[i].x,agents[i].y)
-matplotlib.pyplot.show()
+if plot != "0":
+    matplotlib.pyplot.xlim(0, agents[0].env_width)
+    matplotlib.pyplot.ylim(0, agents[0].env_height)
+    matplotlib.pyplot.imshow(environment)
+    for i in range(num_of_agents):
+        matplotlib.pyplot.scatter(agents[i].x,agents[i].y)
+    matplotlib.pyplot.show()
 
 # write out environment as a file at the end
 
-## create unique data stamp for filename
+    ## create unique data stamp for filename
 
 now = str(datetime.datetime.now())
 
