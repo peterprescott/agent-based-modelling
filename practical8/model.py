@@ -31,7 +31,7 @@ while True:
         # set defaults
         plot = 0
         num_of_agents = 5
-        num_of_iterations = 100
+        num_of_iterations = 10000
         neighbourhood = 10
         break
 
@@ -92,6 +92,9 @@ for i in range(num_of_agents):
 def update(frame_number):
     
     fig.clear()   
+    matplotlib.pyplot.imshow(environment)
+    matplotlib.pyplot.xlim(0, agents[0].env_width)
+    matplotlib.pyplot.ylim(0, agents[0].env_height)
 
     random.shuffle(agents)
 
@@ -115,15 +118,12 @@ time_result = "time = " + str(end - start)
 
 # plot the agents (unless argv withholds permission)
 
+
 if plot != "0":
 
     fig = matplotlib.pyplot.figure(figsize=(7, 7))
-
-    # ~ matplotlib.pyplot.xlim(0, agents[0].env_width)
-    # ~ matplotlib.pyplot.ylim(0, agents[0].env_height)
-    # ~ fig = matplotlib.pyplot.imshow(environment)
-
-    animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
+    
+    animation = matplotlib.animation.FuncAnimation(fig, update,interval=1, repeat=False, frames=num_of_iterations)
 
     matplotlib.pyplot.show()
 
