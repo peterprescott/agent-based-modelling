@@ -30,7 +30,7 @@ while True:
         print('Oops, you forgot to define parameters from command line...\nFear not--we will just set the defaults.')
         # set defaults
         plot = 0
-        num_of_agents = 5
+        num_of_agents = 50
         num_of_iterations = 10000
         neighbourhood = 10
         break
@@ -106,7 +106,7 @@ def update(frame_number):
    
     
     for agent in agents:
-        matplotlib.pyplot.scatter(agent.y,agent.x)
+        matplotlib.pyplot.scatter(agent.y,agent.x, c="#ffffff")
 
 
 # stop the timer
