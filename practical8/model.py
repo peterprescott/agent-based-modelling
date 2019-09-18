@@ -123,7 +123,7 @@ if plot != "0":
     # ~ matplotlib.pyplot.ylim(0, agents[0].env_height)
     # ~ fig = matplotlib.pyplot.imshow(environment)
 
-    animation = matplotlib.animation.FuncAnimation(fig, update, interval=1)
+    animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
 
     matplotlib.pyplot.show()
 
