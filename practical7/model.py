@@ -8,6 +8,13 @@ import matplotlib.pyplot
 import csv
 import datetime
 
+# time it!
+
+import time
+
+start = time.perf_counter()
+
+
 # import the agentframework
 
 import agentframework
@@ -88,6 +95,12 @@ for j in range(num_of_iterations):
         agent.move()
         agent.eat()
         agent.share_with_neighbours(neighbourhood)
+
+# stop the timer
+
+end = time.perf_counter()
+
+print("time = " + str(end - start))
 
 
 # plot the agents
