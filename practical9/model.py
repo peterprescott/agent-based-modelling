@@ -11,6 +11,26 @@ import matplotlib.pyplot
 import matplotlib.animation
 import csv
 import datetime
+import requests
+import bs4
+
+# scrape web data
+
+r = requests.get('http://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html')
+content = r.text
+
+soup = bs4.BeautifulSoup(content, 'html.parser')
+
+y_values = soup.find_all(attrs={"class" : "y"})
+
+for i in range(len(y_values)):
+    y_values[i] = int(y_values[i].text)
+
+x_values = soup.find_all(attrs={"class" : "x"})
+
+for i in range(len(x_values)):
+    x_values[i] = int(x_values[i].text)
+
 
 # time it!
 
@@ -33,7 +53,7 @@ while True:
         print('Oops, you forgot to define parameters from command line...\nFear not--we will just set the defaults.')
         # set defaults
         plot = 0
-        num_of_agents = 50
+        num_of_agents = 500
         num_of_iterations = 10000
         neighbourhood = 10
         break
@@ -88,14 +108,18 @@ dataset.close()
 # make the agents, passing in environment
 
 for i in range(num_of_agents):
-    agents.append(agentframework.Agent(env = environment, agents = agents))
+    j = i % len(y_values)
 
-# define update to move the agents
+    ## multiply values by 3 to spread across entire environment
+    y = 3*y_values[j]
+    x = 3*x_values[j]
+
+    agents.append(agentframework.Agent(environment, agents, y, x))
       
 def update(frame_number):
     
     fig.clear()   
-    matplotlib.pyplot.imshow(environment)
+    matplotlib.pyplot.imshow(environment, vmin=0, vmax=max(max(environment)))
     matplotlib.pyplot.xlim(0, agents[0].env_width)
     matplotlib.pyplot.ylim(0, agents[0].env_height)
 
@@ -128,6 +152,9 @@ fig = matplotlib.pyplot.figure(figsize=(7, 7))
     # ~ matplotlib.pyplot.show()
 
 
+# tkinter code
+
+
 def run():
     
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=num_of_iterations, repeat=False)
@@ -145,12 +172,6 @@ model_menu = tkinter.Menu(menu_bar)
 menu_bar.add_cascade(label="Model", menu=model_menu)
 model_menu.add_command(label="Run model", command=run)
 
-tkinter.mainloop()
-
-
-
-
-# tkinter code
 
 
 # write out environment as a file at the end

@@ -8,14 +8,14 @@ class Agent:
 
     '''An Agent that takes a random walk through two-dimensions'''
     
-    def __init__(self, env, agents):
+    def __init__(self, env, agents, y, x):
 
         self.environment = env
         self.env_height = len(env)
         self.env_width = len(env[0])
 
-        self._y = random.randint(0, self.env_height-1)
-        self._x = random.randint(0, self.env_width-1)
+        self._y = y
+        self._x = x
 
         self.store = 0
 
