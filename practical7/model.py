@@ -2,8 +2,6 @@
 # import the libraries
 
 from sys import argv
-script, num_of_agents, num_of_iterations, neighbourhood = argv
-
 import random
 import operator
 import matplotlib.pyplot
@@ -16,11 +14,46 @@ import agentframework
 
 # set variables
 
-num_of_agents = int(eval(num_of_agents))
+while True:
+    try:
+        script, num_of_agents, num_of_iterations, neighbourhood = argv
+        break
+    except ValueError:
+        print('Oops, you forgot to define parameters from command line...\nFear not--we will just set the defaults.')
+        # set defaults
+        num_of_agents = 100
+        num_of_iterations = 100
+        neighbourhood = 10
+        break
+
+type(num_of_agents)
+
+while True:
+    try:
+        num_of_agents = int(num_of_agents)
+        break
+    except ValueError:
+        print("Oops! You didn't give a valid input for num_of_agents. So we'll default to 10.")
+        num_of_agents = 10
+        
 print("Okay, " + str(num_of_agents) + " agents.")
-num_of_iterations = int(eval(num_of_iterations))
+
+while True:
+    try:
+        num_of_iterations = int(num_of_iterations)
+        break
+    except ValueError:
+        print("Oops! You didn't give a valid input for num_of_iterations. So we'll default to 10.")
+        num_of_iterations = 10    
 print("Right, " + str(num_of_iterations) + " iterations.")
-neighbourhood = int(eval(neighbourhood))
+
+while True:
+    try:
+        neighbourhood = int(neighbourhood)
+        break
+    except ValueError:
+        print("Oops! You didn't give a valid input for neighbourhood. So we'll default to 10.")
+        neighbourhood = 10
 print(f"Neighbourhood size: {neighbourhood}. Okay, let's go!")
 
 agents = []
