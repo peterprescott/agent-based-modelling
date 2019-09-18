@@ -43,8 +43,9 @@ dataset.close()
 # make the agents, passing in environment
 
 for i in range(num_of_agents):
-    agents.append(agentframework.Agent(env = environment))
+    agents.append(agentframework.Agent(env = environment, agent_list = agents))
 
+print(agents[0].agent_list[1])
 
 # move the agents
 

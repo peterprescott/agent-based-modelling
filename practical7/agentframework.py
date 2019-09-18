@@ -4,7 +4,7 @@ class Agent:
 
     '''An Agent that takes a random walk through two-dimensions'''
     
-    def __init__(self, env):
+    def __init__(self, env, agent_list):
 
         self.environment = env
         self.env_height = len(env)
@@ -13,9 +13,9 @@ class Agent:
         self._y = random.randint(0, self.env_height-1)
         self._x = random.randint(0, self.env_width-1)
 
-
-
         self.store = 0
+
+        self.agent_list = agent_list
 
         return
 
