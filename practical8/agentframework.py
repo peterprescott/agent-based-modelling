@@ -74,21 +74,21 @@ class Agent:
 
     def eat(self): # can you make it eat what is left?
 
-        if self.environment[self.y][self.x] > 10:
+        if self.environment[self.x][self.y] > 10:
 
-            self.environment[self.y][self.x] -= 10
+            self.environment[self.x][self.y] -= 10
 
             self.store += 10
 
-        if self.environment[self.y][self.x] <= 10:
+        if self.environment[self.x][self.y] <= 10:
 
-            self.store += self.environment[self.y][self.x]
+            self.store += self.environment[self.x][self.y]
 
-            self.environment[self.y][self.x]
+            self.environment[self.x][self.y]
 
         if self.store > 100:
 
-            self.environment[self.y][self.x] += self.store
+            self.environment[self.x][self.y] += self.store
 
             self.store = 0
 
