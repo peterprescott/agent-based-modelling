@@ -129,7 +129,7 @@ start = time.perf_counter()
 ## Read parameters from command line (if none set, then defaults).
 num_of_agents, neighbourhood, num_of_iterations, animate = read_cmd.parameters(argv)
 
-## Scrape x- and y-values from web.
+## Scrape initial x- and y-values from webpage.
 url = 'http://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html'
 y_values, x_values = web_scraper.scrape(url)
 
@@ -139,9 +139,9 @@ environment = create_env(os.path.join('output_files','env_files','20191021122948
 ## Create agents.
 agents = create_agents(environment)
 
-## Only show animated plot if script is being run directly, rather than being imported. 
-
-if animate == "ANIMATE":
+## Only show animated plot if explicitly requested --
+## but assume any word beginning with 'a' is a request to 'ANIMATE'.
+if animate.lower()[0] == "a":
     fig = matplotlib.pyplot.figure(figsize=(7, 7))
     show_plot()
 
