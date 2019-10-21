@@ -158,7 +158,7 @@ fig = matplotlib.pyplot.figure(figsize=(7, 7))
 def run():
     
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=num_of_iterations, repeat=False)
-    canvas.show()
+    canvas.draw()
 
 root = tkinter.Tk()
 root.wm_title("Model")
