@@ -28,16 +28,16 @@ def scrape(src):
 	for i in range(len(y_values)):
 		y_values[i] = int(y_values[i].text)
 
-	# why not also extract the z values
+	# why not also extract the z values, in case we want them for something.
 	z_values = soup.find_all(attrs={"class" : "z"})
 
 	for i in range(len(z_values)):
 		z_values[i] = int(z_values[i].text)
 
-	# and let's return them as coordinate tuples, rather than just as x or y lists.
+	# and let's return them as coordinate dicts, rather than just as x or y lists.
 	scraped_coordinates = []
 	for i in range(len(x_values)):
-		new_coordinate = (x_values[i], y_values[i], z_values[i])
+		new_coordinate = {"x":x_values[i], "y":y_values[i], "z":z_values[i]}
 		scraped_coordinates.append(new_coordinate)
 
 	return(scraped_coordinates)

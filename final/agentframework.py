@@ -8,7 +8,7 @@ step_size = 1
 class Agent:
     """Define a class of Agent that takes a random walk through a two-dimensional environment."""
     
-    def __init__(self, env, agents, y, x):
+    def __init__(self, env, agents, x, y):
         """Initialize Agent."""
         self.environment = env
         self.env_height = len(env)
