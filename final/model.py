@@ -139,7 +139,8 @@ def run_model():
         visualize.visualize(environment, agents, neighbourhood, num_of_iterations)
         ### We import this as as a separate module only at this point,
         ### so that this script can be run without alteration
-        ### on devices that do not support visualization, eg. running through Termux on Android.
+        ### on devices that do not support visualization,
+        ### eg. running through Termux on my Android.
 
     else:
         for i in range(num_of_iterations):
@@ -152,26 +153,35 @@ if __name__ == '__main__':
     ## (if none set, will set defaults as defined in read_cmd.py).
     parameters = read_cmd.parameters(argv)
     num_of_agents, neighbourhood, num_of_iterations, animate = parameters
+    print(f"Initial Parameters are {parameters}")
 
     ## Scrape initial x- and y-values from webpage.
     URL = 'http://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html'
     scraped_coordinates = web_scraper.scrape(URL)
+    print(f"You have successfuly scraped coordinates from {URL}.")
 
     ## Create environment from CSV file.
-    environment = create_env("in.txt")
-
+    file = "in.txt"
+    environment = create_env(file)
+    print(f"Environment successfully created from {file}.")
+    
     ## Create agents.
     agents = create_agents(environment, num_of_agents, scraped_coordinates)
-
+    print(f"You have successfuly created {num_of_agents} agents.")
+    
+    ## Run model and time it.
+    print("We are now going to run the model.")
+    time_result = run_model()
+    print(f"That took {time_result} seconds.")
 
     ## Save data.
     save_data(environment, agents)
+    print(f"Data has been saved.")
 
-    ## Run model and time it.
-    time_result = run_model()
-
-    ## Save Test Data.
+    ## Record Test data.
     tech = platform.uname()
+    print(f"Machine Details: {tech}.")
+    
     with open(os.path.join('output_files', 'time_file.csv'), 'a') as time_file:
         time_file.write('\n\n' + animate +  ','
             + str(num_of_agents) + ','
