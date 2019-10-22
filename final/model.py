@@ -9,9 +9,6 @@ import datetime
 import time
 import os
 import platform
-import matplotlib
-import matplotlib.pyplot
-import matplotlib.animation
 
 # Import home-made modules.
 
@@ -77,26 +74,6 @@ def agents_interact(agents, neighbourhood):
 
 
 
-def show_plot(fig, environment, agents, neighbourhood, num_of_iterations):
-    """
-    Shows animated plot of Agents' movements.
-    """
-    def update(frame_number):
-        """Updates the visualization."""
-
-        fig.clear()
-        matplotlib.pyplot.imshow(environment, vmin=0, vmax=max(max(environment)))
-        matplotlib.pyplot.xlim(0, agents[0].env_width)
-        matplotlib.pyplot.ylim(0, agents[0].env_height)
-
-        agents_interact(agents, neighbourhood)
-
-        for agent in agents:
-            matplotlib.pyplot.scatter(agent.y, agent.x, c="#ffffff")
-
-    animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
-    matplotlib.pyplot.show()
-
 
 def save_data(environment, agents):
     """"
@@ -134,7 +111,6 @@ def save_data(environment, agents):
 
 
 
-
 def my_timer(process):
     """Time the process."""
     def wrapper():
@@ -159,8 +135,12 @@ def run_model():
     ## Only show animated plot if explicitly requested --
     ## but assume any word beginning with 'a' is a request to 'animate'.
     if animate.lower()[0] == "a":
-        fig = matplotlib.pyplot.figure(figsize=(7, 7))
-        show_plot(fig, environment, agents, neighbourhood, num_of_iterations)
+        import visualize
+        visualize.visualize(environment, agents, neighbourhood, num_of_iterations)
+        ### We import this as as a separate module only at this point,
+        ### so that this script can be run without alteration
+        ### on devices that do not support visualization, eg. running through Termux on Android.
+
     else:
         for i in range(num_of_iterations):
             agents_interact(agents, neighbourhood)
@@ -194,11 +174,11 @@ if __name__ == '__main__':
     tech = platform.uname()
     with open(os.path.join('output_files', 'time_file.csv'), 'a') as time_file:
         time_file.write('\n\n' + animate +  ','
-			+ str(num_of_agents) + ','
-			+ str(neighbourhood) + ','
-			+ str(num_of_iterations) + ','
-			+ str(time_result) + ','
-			+ tech.node + ','
-			+ tech.system + str(tech.release) + ','
-			+ tech.machine + ','
-			+ tech.processor.replace(',', '') + 'n')
+            + str(num_of_agents) + ','
+            + str(neighbourhood) + ','
+            + str(num_of_iterations) + ','
+            + str(time_result) + ','
+            + tech.node + ','
+            + tech.system + str(tech.release) + ','
+            + tech.machine + ','
+            + tech.processor.replace(',', '') + 'n')
