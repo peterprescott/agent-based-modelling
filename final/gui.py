@@ -31,7 +31,7 @@ def run():
     canvas.draw()
 
 
-## Read parameters from command line 
+## Read parameters from command line
 ## (if none set, will set defaults as defined in read_cmd.py).
 parameters = read_cmd.parameters(argv)
 num_of_agents, neighbourhood, num_of_iterations, animate = parameters

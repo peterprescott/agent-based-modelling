@@ -45,6 +45,7 @@ def create_env(file):
     return environment
 
 
+
 def create_agents(environment, num_of_agents, coordinates):
     """Make the agents, passing in environment, num_of_agents, and initial coordinates."""
 
@@ -63,6 +64,7 @@ def create_agents(environment, num_of_agents, coordinates):
     return agents
 
 
+
 def agents_interact(agents, neighbourhood):
     """Shuffle the agents and then make them interact."""
 
@@ -71,7 +73,6 @@ def agents_interact(agents, neighbourhood):
         agent.move()
         agent.eat()
         agent.share_with_neighbours(neighbourhood)
-
 
 
 
@@ -136,7 +137,7 @@ def run_model():
     ## but assume any word beginning with 'a' is a request to 'animate'.
     if animate.lower()[0] == "a":
         import visualize
-        visualize.visualize(environment, agents, neighbourhood, num_of_iterations)
+        visualize.show_plot(environment, agents, neighbourhood, num_of_iterations)
         ### We import this as as a separate module only at this point,
         ### so that this script can be run without alteration
         ### on devices that do not support visualization,
@@ -145,6 +146,8 @@ def run_model():
     else:
         for i in range(num_of_iterations):
             agents_interact(agents, neighbourhood)
+
+
 
 # Only run if script is called directly.
 if __name__ == '__main__':

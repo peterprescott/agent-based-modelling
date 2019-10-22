@@ -4,10 +4,11 @@ import matplotlib.animation
 
 from model import agents_interact
 
-def show_plot(fig, environment, agents, neighbourhood, num_of_iterations):
-    """
-    Shows animated plot of Agents' movements.
-    """
+def show_plot(environment, agents, neighbourhood, num_of_iterations):
+    """Shows animated plot of Agents' movements."""
+
+    fig = matplotlib.pyplot.figure(figsize=(7, 7))
+
     def update(frame_number):
         """Updates the visualization."""
 
@@ -23,7 +24,3 @@ def show_plot(fig, environment, agents, neighbourhood, num_of_iterations):
 
     animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
     matplotlib.pyplot.show()
-
-def visualize(environment, agents, neighbourhood, num_of_iterations):
-        fig = matplotlib.pyplot.figure(figsize=(7, 7))
-        show_plot(fig, environment, agents, neighbourhood, num_of_iterations)

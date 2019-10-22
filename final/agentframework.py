@@ -3,19 +3,20 @@
 import random
 
 # Set Agent's step size.
-step_size = 1
+STEP_SIZE = 1
 
 # List of possible tribes. (For Model Extension: Colour-Code by 'Tribe').
 # First letter should correspond to matplotlib's colors API 
 # (see https://matplotlib.org/2.0.2/api/colors_api.html), 
 # otherwise show_plot() will throw error.
-tribes = ["red", "white", "blue"]
+TRIBES = ["red", "white", "blue", "green", "cyan", "magenta", "yellow", "black"]
 
 class Agent:
     """Define a class of Agent that takes a random walk through a two-dimensional environment."""
     
     def __init__(self, env, agents, x, y):
         """Initialize Agent."""
+
         self.environment = env
         self.env_height = len(env)
         self.env_width = len(env[0])
@@ -28,12 +29,10 @@ class Agent:
         self.agents = agents
         
         ### Model Extension: Colour-Code by 'Tribe'.
-        self.tribe = random.choice(tribes)
+        self.tribe = random.choice(TRIBES)
 
-        return
 
     ## do the decent object oriented thing: https://docs.python.org/3/library/functions.html#property
-
     def get_x(self):
         """Get x coordinate of Agent."""
         return self._x
@@ -72,14 +71,14 @@ class Agent:
         """Move agent with random unit-sized step in each of two dimensions."""
 		
         if random.random() < 0.5:
-            self.y = (self.y + step_size) % self.env_height
+            self.y = (self.y + STEP_SIZE) % self.env_height
         else:
-            self.y = (self.y - step_size) % self.env_height
+            self.y = (self.y - STEP_SIZE) % self.env_height
 
         if random.random() < 0.5:
-            self.x = (self.x + step_size) % self.env_width
+            self.x = (self.x + STEP_SIZE) % self.env_width
         else:
-            self.x = (self.x - step_size) % self.env_width
+            self.x = (self.x - STEP_SIZE) % self.env_width
 
         return [self.y, self.x]
 
@@ -99,8 +98,6 @@ class Agent:
         if self.store > 100:
             self.environment[self.x][self.y] += self.store
             self.store = 0
-
-        return
 
 
     def distance_between(self,agent):
@@ -130,4 +127,3 @@ class Agent:
                     print("That shouldn't have happened.")
                 
                 self.store = agent.store = (self.store + agent.store)/2
-        return
