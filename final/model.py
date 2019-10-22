@@ -52,8 +52,8 @@ def create_agents(environment, num_of_agents, coordinates):
 
     for i in range(num_of_agents):
         if i < len(coordinates):
-            x = coordinates[i]["x"]
-            y = coordinates[i]["y"]
+            x = 3 * coordinates[i]["x"]
+            y = 3 * coordinates[i]["y"]
         else:
             x = random.randint(0, len(environment))
             y = random.randint(0, len(environment[0]))
@@ -153,7 +153,12 @@ if __name__ == '__main__':
     ## (if none set, will set defaults as defined in read_cmd.py).
     parameters = read_cmd.parameters(argv)
     num_of_agents, neighbourhood, num_of_iterations, animate = parameters
-    print(f"Initial Parameters are {parameters}")
+    report = f"""##### Initial Parameters #####
+    Number of Agents: {num_of_agents}
+    Neighbourhood: {neighbourhood}
+    Number of Iterations: {num_of_iterations}
+    """
+    print(report)
 
     ## Scrape initial x- and y-values from webpage.
     URL = 'http://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html'

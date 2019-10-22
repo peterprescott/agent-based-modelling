@@ -11,7 +11,7 @@ import matplotlib.animation
 
 import read_cmd
 import web_scraper
-from model import create_env, create_agents, agents_interact
+from model import create_env, create_agents, agents_interact, save_data
 
 def update(frame_number):
     """Updates the visualization."""
@@ -30,20 +30,6 @@ def run():
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=num_of_iterations, repeat=False)
     canvas.draw()
 
-# Configure Tkinter.
-root = tkinter.Tk()
-root.wm_title("Model")
-fig = matplotlib.pyplot.figure(figsize=(7, 7))
-canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
-canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
-menu_bar = tkinter.Menu(root)
-root.config(menu=menu_bar)
-model_menu = tkinter.Menu(menu_bar)
-menu_bar.add_cascade(label="Model", menu=model_menu)
-model_menu.add_command(label="Run model", command=run)
-
-
-
 
 ## Read parameters from command line 
 ## (if none set, will set defaults as defined in read_cmd.py).
@@ -59,5 +45,19 @@ environment = create_env("in.txt")
 
 ## Create agents.
 agents = create_agents(environment, num_of_agents, scraped_coordinates)
+
+
+# Configure Tkinter.
+root = tkinter.Tk()
+root.wm_title("Model")
+fig = matplotlib.pyplot.figure(figsize=(7, 7))
+canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
+canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+menu_bar = tkinter.Menu(root)
+root.config(menu=menu_bar)
+model_menu = tkinter.Menu(menu_bar)
+menu_bar.add_cascade(label="Model", menu=model_menu)
+model_menu.add_command(label="Run model", command=run)
+
 
 tkinter.mainloop()

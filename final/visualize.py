@@ -19,7 +19,7 @@ def show_plot(fig, environment, agents, neighbourhood, num_of_iterations):
         agents_interact(agents, neighbourhood)
 
         for agent in agents:
-            matplotlib.pyplot.scatter(agent.y, agent.x, c="#ffffff")
+            matplotlib.pyplot.scatter(agent.y, agent.x, c="m")
 
     animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
     matplotlib.pyplot.show()

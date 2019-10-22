@@ -5,6 +5,12 @@ import random
 # Set Agent's step size.
 step_size = 1
 
+# List of possible tribes. (For Model Extension: Colour-Code by 'Tribe').
+# First letter should correspond to matplotlib's colors API 
+# (see https://matplotlib.org/2.0.2/api/colors_api.html), 
+# otherwise show_plot() will throw error.
+tribes = ["red", "white", "blue"]
+
 class Agent:
     """Define a class of Agent that takes a random walk through a two-dimensional environment."""
     
@@ -20,6 +26,9 @@ class Agent:
         self.store = 0
 
         self.agents = agents
+        
+        ### Model Extension: Colour-Code by 'Tribe'.
+        self.tribe = random.choice(tribes)
 
         return
 
@@ -107,5 +116,18 @@ class Agent:
         
         for agent in self.agents:
             if self.distance_between(agent) <= neighbourhood:
+                ### Model Extension: Agent with less resource 'converts'
+                ### to tribe of Agent with more resource.
+                ### Only then do they share resources.
+                if self.store > agent.store:
+                    agent.tribe = self.tribe
+                elif self.store < agent.store:
+                    self.tribe = agent.tribe
+                ### If they have precisely equal resources the choice is random.
+                elif self.store == agent.store:
+                    self.store = agent.store = random.choice([self.store, agent.store])
+                else:
+                    print("That shouldn't have happened.")
+                
                 self.store = agent.store = (self.store + agent.store)/2
         return
