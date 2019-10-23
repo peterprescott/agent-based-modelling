@@ -11,7 +11,7 @@ import matplotlib.animation
 
 import read_cmd
 import web_scraper
-from model import create_env, create_agents, agents_interact, save_data
+from run_model import create_env, create_agents, agents_interact, save_data
         
 def update(frame_number):
     """Updates the visualization."""

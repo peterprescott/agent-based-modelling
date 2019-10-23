@@ -2,7 +2,7 @@ import matplotlib
 import matplotlib.pyplot
 import matplotlib.animation
 
-from model import agents_interact
+from run_model import agents_interact
 
 def show_plot(environment, agents, neighbourhood, num_of_iterations):
     """Shows animated plot of Agents' movements."""
