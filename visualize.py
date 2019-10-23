@@ -1,3 +1,5 @@
+import os
+import imageio
 import matplotlib
 import matplotlib.pyplot
 import matplotlib.animation
@@ -13,7 +15,7 @@ def show_plot(environment, agents, neighbourhood, num_of_iterations):
         """Updates the visualization."""
 
         fig.clear()
-        matplotlib.pyplot.imshow(environment, vmin=0, vmax=max(max(environment)))
+        matplotlib.pyplot.imshow(environment, vmin=0, vmax=500)
         matplotlib.pyplot.xlim(0, agents[0].env_width)
         matplotlib.pyplot.ylim(0, agents[0].env_height)
 
@@ -21,6 +23,16 @@ def show_plot(environment, agents, neighbourhood, num_of_iterations):
 
         for agent in agents:
             matplotlib.pyplot.scatter(agent.y, agent.x, c=agent.tribe[0])
+        
+        matplotlib.pyplot.savefig(os.path.join('output_files','gif',f"{frame_number}.jpg"), quality=10)
 
     animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
     matplotlib.pyplot.show()
+
+    with imageio.get_writer(os.path.join('output_files','gif','saved_animation.gif'), mode="I",
+                            duration=0.5) as writer:
+        for file in range(num_of_iterations):
+            image = imageio.imread(os.path.join('output_files','gif',f"{file}.jpg"))
+            writer.append_data(image)
+            os.remove(os.path.join('output_files','gif',f"{file}.jpg"))
+

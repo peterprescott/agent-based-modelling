@@ -9,7 +9,7 @@ STEP_SIZE = 1
 # First letter should correspond to matplotlib's colors API 
 # (see https://matplotlib.org/2.0.2/api/colors_api.html), 
 # otherwise show_plot() will throw error.
-TRIBES = ["red", "white", "blue", "green", "cyan", "magenta", "yellow", "black"]
+TRIBES = ["red", "white", "blue"] #, "green", "cyan", "magenta", "yellow", "black"]
 
 class Agent:
     """Define a class of Agent that takes a random walk through a two-dimensional environment."""
@@ -64,7 +64,7 @@ class Agent:
 
     def __repr__(self):
         """Define representation, so that when you print an agent you see something intelligible."""
-        return "{'store':'" + str(self.store) + "','y':'" + str(self.y) + "','x':'" + str(self.x) + "'}"
+        return "{'store':'" + str(self.store) + "','y':'" + str(self.y) + "','x':'" + str(self.x) + "','tribe':'" + str (self.tribe) + "}"
 
 
     def move(self):
