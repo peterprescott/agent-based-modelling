@@ -39,7 +39,7 @@ def parameters(cmd_line_input):
             try:
                 #### Allows you to request animation from terminal
                 #### without worrying about setting other parameters.
-                if str(cmd_line_input[1]).lower() == "a":
+                if str(cmd_line_input[1][0]).lower() == "a":
                     animate = "ANIMATE"
             except:
                 pass
