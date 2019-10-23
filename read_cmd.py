@@ -2,7 +2,7 @@ from sys import argv
 
 DEFAULT_NUM_OF_AGENTS = 10
 DEFAULT_SIZE_OF_NEIGHBOURHOOD = 10
-DEFAULT_NUM_OF_ITERATIONS = 10**4
+DEFAULT_NUM_OF_ITERATIONS = 10**3
 
 
 def parameters(cmd_line_input):
