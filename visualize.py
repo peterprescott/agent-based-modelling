@@ -6,7 +6,7 @@ import matplotlib.animation
 
 from run_model import agents_interact
 
-save_gif = "no"
+save_gif = "YES"
 
 def show_plot(environment, agents, neighbourhood, num_of_iterations):
     """Shows animated plot of Agents' movements."""
@@ -24,8 +24,12 @@ def show_plot(environment, agents, neighbourhood, num_of_iterations):
             txt = "There are no more rabbits."
         fig.text(.05,.05,txt)
         matplotlib.pyplot.imshow(environment, vmin=0, vmax=250)
-        matplotlib.pyplot.xlim(0, agents[0].env_width)
-        matplotlib.pyplot.ylim(0, agents[0].env_height)
+        
+        if len(agents) > 0:
+            matplotlib.pyplot.xlim(0, agents[0].env_width)
+            matplotlib.pyplot.ylim(0, agents[0].env_height)
+        else:
+            frame_number = num_of_iterations
 
         agents_interact(agents, neighbourhood)
 
@@ -33,7 +37,7 @@ def show_plot(environment, agents, neighbourhood, num_of_iterations):
             matplotlib.pyplot.scatter(agent.y, agent.x, c=agent.colour[0])
         
         if save_gif == "YES":
-            matplotlib.pyplot.savefig(os.path.join('output_files','gif',f"{frame_number}.jpg"), quality=50)
+            matplotlib.pyplot.savefig(os.path.join('output_files','gif',f"{frame_number}.jpg"), quality=100)
 
     animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
     matplotlib.pyplot.show()

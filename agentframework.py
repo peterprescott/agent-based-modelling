@@ -123,9 +123,8 @@ class Rabbit(Agent):
         self.age = 0
         
         self.sex = random.choice(["male", "female"])
-        print(self.sex)
         self.name = names.get_first_name(gender=self.sex)
-        print(self.name)
+
         
         if self.sex == "female":
             self.pregnant = 0
@@ -146,6 +145,7 @@ class Rabbit(Agent):
         
         if self.energy < 0:
             self.die()
+            print(f"{self} died of STARVATION")
 
         if self.environment[self.x][self.y] > 20:
             # Rabbits digest inefficiently: 
@@ -162,9 +162,9 @@ class Rabbit(Agent):
         and then give birth after ten steps."""
                 
         if self.sex == "female" and self.age > 10:
-            self.energy -= 5
-            
+
             if self.pregnant > 0:
+                self.energy -= 5
                 self.pregnant += 1
                 if self.pregnant == 10:
                     self.agents.append(Rabbit(self.environment, self.agents, self.x, self.y))
@@ -173,14 +173,16 @@ class Rabbit(Agent):
             else:
                 for agent in self.agents:
                     if self.distance_between(agent) <= range:
-                        self.pregnant = 1
+                        if agent.sex == "male":
+                            self.pregnant = 1
 
     def get_older(self):
         """Rabbits age."""
         
         self.age += 1
-        if self.age > 40:
+        if self.age > 80:
             self.die()
+            print(f"{self} died of OLD AGE")
 
     def die(self):
         """Rabbits die."""
