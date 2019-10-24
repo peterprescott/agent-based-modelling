@@ -1,18 +1,43 @@
 #~ agentframework.py
 
+import csv
 import random
+import names
 
-# Set Agent's step size.
-STEP_SIZE = 1
 
-# List of possible tribes. (For Model Extension: Colour-Code by 'Tribe').
-# First letter should correspond to matplotlib's colors API 
-# (see https://matplotlib.org/2.0.2/api/colors_api.html), 
-# otherwise show_plot() will throw error.
-TRIBES = ["red", "white", "blue"] #, "green", "cyan", "magenta", "yellow", "black"]
+class Environment:
+    """
+    Transforms a CSV file into  a 2-d environment with which an agent can interact.
+    """
+    
+    def __init__(self, file):
+        """Initialize Environment"""
+        
+        environment = []
+
+        with open(file, newline='') as dataset:
+            reader = csv.reader(dataset)
+            for row in reader:
+                rowlist = []
+                for numeric_string in row:
+                    try:
+                        value = int(numeric_string)
+                        rowlist.append(value)
+                    except:
+                        # When loading an environment saved by save_env(),
+                        # python is tricked by the comma at the end of each line
+                        # into trying to convert the empty string '' to an int.
+                        # This exception stops that from being a problem.
+                        pass
+
+
+                environment.append(rowlist)
+                
+        self.env = environment
+
 
 class Agent:
-    """Define a class of Agent that takes a random walk through a two-dimensional environment."""
+    """An Agent takes a random walk through a two-dimensional environment."""
     
     def __init__(self, env, agents, x, y):
         """Initialize Agent."""
@@ -23,13 +48,13 @@ class Agent:
 
         self._y = y
         self._x = x
+        self.step_size = 1
 
-        self.store = 0
+        self.energy = 30
 
         self.agents = agents
         
-        ### Model Extension: Colour-Code by 'Tribe'.
-        self.tribe = random.choice(TRIBES)
+        self.colour = "white"
 
 
     ## do the decent object oriented thing: https://docs.python.org/3/library/functions.html#property
@@ -62,42 +87,20 @@ class Agent:
     y = property(get_y, set_y, del_y, "I'm the 'y' property.")
 
 
-    def __repr__(self):
-        """Define representation, so that when you print an agent you see something intelligible."""
-        return "{'store':'" + str(self.store) + "','y':'" + str(self.y) + "','x':'" + str(self.x) + "','tribe':'" + str (self.tribe) + "}"
-
-
     def move(self):
         """Move agent with random unit-sized step in each of two dimensions."""
-		
+        
         if random.random() < 0.5:
-            self.y = (self.y + STEP_SIZE) % self.env_height
+            self.y = (self.y + self.step_size) % self.env_height
         else:
-            self.y = (self.y - STEP_SIZE) % self.env_height
+            self.y = (self.y - self.step_size) % self.env_height
 
         if random.random() < 0.5:
-            self.x = (self.x + STEP_SIZE) % self.env_width
+            self.x = (self.x + self.step_size) % self.env_width
         else:
-            self.x = (self.x - STEP_SIZE) % self.env_width
+            self.x = (self.x - self.step_size) % self.env_width
 
         return [self.y, self.x]
-
-
-    def eat(self): 
-        """Define an agent's eating of resource from environment."""
-		
-        if self.environment[self.x][self.y] > 10:
-            self.environment[self.x][self.y] -= 10
-            self.store += 10
-
-        if self.environment[self.x][self.y] <= 10:
-            self.store += self.environment[self.x][self.y]
-            self.environment[self.x][self.y] = 0
-
-		## If Agent has eaten too much, it vomits.
-        if self.store > 100:
-            self.environment[self.x][self.y] += self.store
-            self.store = 0
 
 
     def distance_between(self,agent):
@@ -108,22 +111,92 @@ class Agent:
         return distance
 
 
-    def share_with_neighbours(self, neighbourhood):
-        """Share 'eaten' resource with other Agents within neighbourhood proximity range."""
+#Now let's extend the model.
+class Rabbit(Agent):
+    """A Rabbit is an Agent that eats grass, reproduces, ages, and dies."""
+    
+    def __init__(self, env, agents, x, y):
+        """Initialize Rabbit"""
         
-        for agent in self.agents:
-            if self.distance_between(agent) <= neighbourhood:
-                ### Model Extension: Agent with less resource 'converts'
-                ### to tribe of Agent with more resource.
-                ### Only then do they share resources.
-                if self.store > agent.store:
-                    agent.tribe = self.tribe
-                elif self.store < agent.store:
-                    self.tribe = agent.tribe
-                ### If they have precisely equal resources the choice is random.
-                elif self.store == agent.store:
-                    self.store = agent.store = random.choice([self.store, agent.store])
-                else:
-                    print("That shouldn't have happened.")
+        Agent.__init__(self, env, agents, x, y)
+        
+        self.age = 0
+        
+        self.sex = random.choice(["male", "female"])
+        print(self.sex)
+        self.name = names.get_first_name(gender=self.sex)
+        print(self.name)
+        
+        if self.sex == "female":
+            self.pregnant = 0
+            self.colour = "magenta"
+    
+    def __repr__(self):
+        return self.name
+
+    def move(self):
+        """Rabbit moves just like an Agent, but uses energy to do so."""
+        
+        Agent.move(self)
+        
+        self.energy -= 5
+    
+    def eat(self): 
+        """Define an agent's eating of resource from environment."""
+        
+        if self.energy < 0:
+            self.die()
+
+        if self.environment[self.x][self.y] > 20:
+            # Rabbits digest inefficiently: 
+            # they only get 1 unit of energy from 2 units of grass
+            self.environment[self.x][self.y] -= 20
+            self.energy += 10
+
+        if self.environment[self.x][self.y] <= 20:
+            self.energy += (self.environment[self.x][self.y])/2
+            self.environment[self.x][self.y] = 0
+            
+    def mate(self, range):
+        """Mature female rabbits become pregnant whenever male is in range,
+        and then give birth after ten steps."""
                 
-                self.store = agent.store = (self.store + agent.store)/2
+        if self.sex == "female" and self.age > 10:
+            self.energy -= 5
+            
+            if self.pregnant > 0:
+                self.pregnant += 1
+                if self.pregnant == 10:
+                    self.agents.append(Rabbit(self.environment, self.agents, self.x, self.y))
+                    print(f'{self.name} gave birth at {self.x},{self.y}')
+                    self.pregnant = 0
+            else:
+                for agent in self.agents:
+                    if self.distance_between(agent) <= range:
+                        self.pregnant = 1
+
+    def get_older(self):
+        """Rabbits age."""
+        
+        self.age += 1
+        if self.age > 40:
+            self.die()
+
+    def die(self):
+        """Rabbits die."""
+
+        try:
+            index = self.agents.index(self)
+            self.agents.pop(index)
+        except ValueError:
+            # I haven't worked out why, but sometimes this thows errors.
+            print('Something went wrong, but we will press on')
+            
+        print(f"{self} died.")
+
+# If you have the time...
+class Fox(Agent):
+    """A Fox is an Agent that hunts rabbits and eats them."""
+    
+       
+    pass

@@ -18,34 +18,6 @@ import web_scraper
 
 
 # Define independent pieces of our procedure as functions.
-
-def create_env(file):
-    """Creates an environment from a CSV file."""
-
-    environment = []
-
-    with open(file, newline='') as dataset:
-        reader = csv.reader(dataset)
-        for row in reader:
-            rowlist = []
-            for numeric_string in row:
-                try:
-                    value = int(numeric_string)
-                    rowlist.append(value)
-                except:
-                    # When loading an environment saved by save_env(),
-                    # python is tricked by the comma at the end of each line
-                    # into trying to convert the empty string '' to an int.
-                    # This exception stops that from being a problem.
-                    pass
-
-
-            environment.append(rowlist)
-
-    return environment
-
-
-
 def create_agents(environment, num_of_agents, coordinates):
     """Make the agents, passing in environment, num_of_agents, and initial coordinates."""
 
@@ -59,7 +31,7 @@ def create_agents(environment, num_of_agents, coordinates):
             x = random.randint(0, len(environment))
             y = random.randint(0, len(environment[0]))
 
-        agents.append(agentframework.Agent(environment, agents, x, y))
+        agents.append(agentframework.Rabbit(environment, agents, x, y))
 
     return agents
 
@@ -68,11 +40,14 @@ def create_agents(environment, num_of_agents, coordinates):
 def agents_interact(agents, neighbourhood):
     """Shuffle the agents and then make them interact."""
 
-    random.shuffle(agents)
-    for agent in agents:
-        agent.move()
-        agent.eat()
-        agent.share_with_neighbours(neighbourhood)
+    if len(agents)>0:
+        random.shuffle(agents)
+        for agent in agents:
+            agent.move()
+            agent.eat()
+            agent.mate(neighbourhood)
+            agent.get_older()
+        
 
 
 
@@ -170,7 +145,7 @@ if __name__ == '__main__':
 
     ## Create environment from CSV file.
     file = "in.txt"
-    environment = create_env(file)
+    environment = agentframework.Environment(file).env
     print(f"Environment successfully created from {file}.")
     
     ## Create agents.

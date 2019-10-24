@@ -24,7 +24,7 @@ def update(frame_number):
     agents_interact(agents, neighbourhood)
 
     for agent in agents:
-        matplotlib.pyplot.scatter(agent.y, agent.x, c=agent.tribe[0])
+        matplotlib.pyplot.scatter(agent.y, agent.x, c=agent.colour[0])
 
 def run():
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=num_of_iterations, repeat=False)
