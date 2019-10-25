@@ -44,7 +44,7 @@ pip install -r graphic_requirements.txt
 python run_model.py animate
 ```
 
-You should then see a visual animation of your model as it runs: specifically, white and black dots wobbling around on a yellowly-green square. The white dots represent male rabbits; the black dots female rabbits.
+You should then see a visual animation of your model as it runs: specifically, white and black dots wobbling around on a yellowly-green square. The white dots represent male rabbits; the black dots female rabbits; the green square the grassy field in which the rabbits live, with the changing brightness corresponding to how much grass is in a particular spot.
 
 ![Screenshot showing run_model.py animation](run_model.png)
 
