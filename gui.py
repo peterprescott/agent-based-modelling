@@ -11,19 +11,20 @@ import matplotlib.animation
 
 import read_cmd
 import web_scraper
-from run_model import create_env, create_agents, agents_interact, save_data
+from run_model import create_rabbits, rabbits_interact, save_data
+from agentframework import Environment
         
 def update(frame_number):
     """Updates the visualization."""
 
     fig.clear()
     matplotlib.pyplot.imshow(environment, vmin=0, vmax=max(max(environment)))
-    matplotlib.pyplot.xlim(0, agents[0].env_width)
-    matplotlib.pyplot.ylim(0, agents[0].env_height)
+    matplotlib.pyplot.xlim(0, rabbits[0].env_width)
+    matplotlib.pyplot.ylim(0, rabbits[0].env_height)
 
-    agents_interact(agents, neighbourhood)
+    rabbits_interact(rabbits, neighbourhood)
 
-    for agent in agents:
+    for agent in rabbits:
         matplotlib.pyplot.scatter(agent.y, agent.x, c=agent.colour[0])
 
 def run():
@@ -35,17 +36,17 @@ if __name__ == '__main__':
     ## Read parameters from command line
     ## (if none set, will set defaults as defined in read_cmd.py).
     parameters = read_cmd.parameters(argv)
-    num_of_agents, neighbourhood, num_of_iterations, animate = parameters
+    num_of_rabbits, lifespan, neighbourhood, num_of_iterations, animate = parameters
 
     ## Scrape initial x- and y-values from webpage.
     url = 'http://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html'
     scraped_coordinates = web_scraper.scrape(url)
 
     ## Create environment from CSV file.
-    environment = create_env("in.txt")
+    environment = Environment("in.txt").env
 
-    ## Create agents.
-    agents = create_agents(environment, num_of_agents, scraped_coordinates)
+    ## Create rabbits.
+    rabbits = create_rabbits(environment, num_of_rabbits, scraped_coordinates, lifespan)
 
 
     # Configure Tkinter.
