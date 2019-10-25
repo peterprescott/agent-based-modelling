@@ -2,7 +2,7 @@
 
 A project done as part of [the Data CDT](https://datacdt.org/)'s GEOG5995M/ENVS802 module: **Programming For Social Scientists**.
 
-Contents: [Intro](#intro). [Installation](#install). [Discussion](#discuss). [Browser Demo](#demo). [History & Theory](#theory).
+Contents: [Intro](#intro). [Installation](#install). [Discussion](#discuss). [GUI 1: Tkinter](#tkinter). [GUI 2: Browser](#browser). [History & Theory](#theory).
 
 <a name="intro"></a>
 ## Intro
@@ -178,8 +178,8 @@ You can run it with ```python gui.py``` from the command line -- or you can just
 
 Currently all you can do is run the model with the default parameter values (which are set from within ```read_cmd.py```, and could perhaps be changed from there -- EDIT then SAVE -- by our hypothetical CLI-phobic data analyst), but this GUI could be developed if necessary. 
 
-<a name="demo"></a>
-## Browser Demo
+<a name="browser"></a>
+## GUI 2: Browser
 
 The other possibility -- which will allow us to much more easily reach a much larger potential audience -- is to make a (web-)browser-based GUI app. Javascript and Python are similar enough that it seemed like the simplest solution might be to rewrite [the same sort of model in JavaScript](https://github.com/peterprescott/js-agent-modelling)
 
