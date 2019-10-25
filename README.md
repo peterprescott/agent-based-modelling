@@ -3,6 +3,8 @@ A project done as part of [the Data CDT](https://datacdt.org/)'s GEOG5995M/ENVS8
 
 Contents:
 [Intro](#intro)
+[Installation](#install)
+[Discussion](#discuss)
 
 <a name="intro"></a>
 ## Intro
@@ -12,6 +14,7 @@ It is 'licensed' under the [The Unlicense](https://unlicense.org/), and availabl
 
 It is intended to be [run from the command line](https://www.howtogeek.com/437682/command-lines-why-do-people-still-bother-with-them/), though the project includes the beginnings of a Tkinter GUI, as well as a proof-of-concept of a web-page GUI with code written in JavaScript instead of Python.
 
+<a name="install"></a>
 ## Installation
 You need to have Git and Python installed. If you don't, use your system's recommended package manager to download them from the command line. (For Windows, use [Chocolatey](https://chocolatey.org/install).)
 
@@ -49,6 +52,7 @@ You should then see a visual animation of your model as it runs: specifically, w
 
 [![Visual animation of the model](https://geodemographics.co.uk/images/abm.gif)]
 
+<a name="discuss"></a>
 ## Discussion
 Those practicals developed a class of Agent that took random walks across a two-dimensional Environment, stored resources from that Environment, and interacted with other Agents within a certain specified 'neighbourhood' range.
 
