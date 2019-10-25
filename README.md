@@ -45,9 +45,11 @@ pip install -r graphic_requirements.txt
 python run_model.py animate
 ```
 
-You should then see a visual animation of your model as it runs: specifically, white and black dots wobbling around on a yellowly-green square. The white dots represent male rabbits; the black dots female rabbits. 
+You should then see a visual animation of your model as it runs: specifically, white and black dots wobbling around on a yellowly-green square. The white dots represent male rabbits; the black dots female rabbits.
 
 [![Visual animation of the model](https://geodemographics.co.uk/images/abm.gif)]
+
+You can specify the parameters with which the model runs from the command line.
 
 <a name="discuss"></a>
 ## Discussion
@@ -102,4 +104,44 @@ and then added a ```mate(range)``` function, as well as get_older() and die() fu
                     if self.distance_between(agent) <= range:
                         if agent.sex == "male":
                             self.pregnant = 1
+
+    def get_older(self):
+        """Rabbits age."""
+        
+        self.age += 1
+        if self.age > self.lifespan:
+            self.die()
+            print(f"{self} died of old age.")
+
+    def die(self):
+        """Rabbits die."""
+
+        try:
+            index = self.agents.index(self)
+            self.agents.pop(index)
+        except ValueError:
+            # I haven't worked out why, but sometimes this thows errors.
+            print('Something went wrong, but we will press on')
+
+```
+
+These functions introduced the ideas of age, lifespan, sex, and being pregnant, so when a Rabbit is initialized, we add these properties to those inherited from its initialization as an Agent. We also used the ```names``` package to assign names to each rabbit.
+
+```
+    def __init__(self, env, agents, x, y, lifespan):
+        """Initialize Rabbit"""
+        
+        Agent.__init__(self, env, agents, x, y)
+        
+        self.age = 0
+        self.lifespan = lifespan
+        
+        self.sex = random.choice(["male", "female"])
+        if self.sex == "female":
+            self.pregnant = 0
+            self.colour = "k ie. black"
+            
+        self.name = names.get_first_name(gender=self.sex)
+
+        
 ```
