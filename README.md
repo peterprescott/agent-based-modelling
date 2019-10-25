@@ -46,7 +46,7 @@ python run_model.py animate
 
 You should then see a visual animation of your model as it runs: specifically, white and black dots wobbling around on a yellowly-green square. The white dots represent male rabbits; the black dots female rabbits.
 
-[![Screenshot showing run_model.py animation](run_model.png)]
+![Screenshot showing run_model.py animation](run_model.png)
 
 You can specify the parameters with which the model runs from the command line, in this order: *num_of_agents*, *lifespan*, *neighbourhood*, *num_of_iterations*. These must each be an integer value, otherwise the model will just run with default values.
 
