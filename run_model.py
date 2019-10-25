@@ -1,7 +1,8 @@
-#~ model.py
+#~ run_model.py
 
 # Import any necessary libraries.
 
+import sys
 from sys import argv
 import random
 import csv
@@ -18,31 +19,33 @@ import web_scraper
 
 
 # Define independent pieces of our procedure as functions.
-def create_agents(environment, num_of_agents, coordinates):
-    """Make the agents, passing in environment, num_of_agents, and initial coordinates."""
 
-    agents = []
+def create_rabbits(environment, num_of_rabbits, coordinates, lifespan):
+    """Make the rabbits, passing in environment, num_of_rabbits, and initial coordinates."""
 
-    for i in range(num_of_agents):
+    rabbits = []
+
+    for i in range(num_of_rabbits):
         if i < len(coordinates):
+			# multiply by 3 to spread scraped coordinates across full 300 x 300 map
             x = 3 * coordinates[i]["x"]
             y = 3 * coordinates[i]["y"]
         else:
             x = random.randint(0, len(environment))
             y = random.randint(0, len(environment[0]))
 
-        agents.append(agentframework.Rabbit(environment, agents, x, y))
+        rabbits.append(agentframework.Rabbit(environment, rabbits, x, y, lifespan))
 
-    return agents
+    return rabbits
 
 
 
-def agents_interact(agents, neighbourhood):
-    """Shuffle the agents and then make them interact."""
+def rabbits_interact(rabbits, neighbourhood=10):
+    """Shuffle the rabbits and then make them interact."""
 
-    if len(agents)>0:
-        random.shuffle(agents)
-        for agent in agents:
+    if len(rabbits)>0:
+        random.shuffle(rabbits)
+        for agent in rabbits:
             agent.move()
             agent.eat()
             agent.mate(neighbourhood)
@@ -51,7 +54,7 @@ def agents_interact(agents, neighbourhood):
 
 
 
-def save_data(environment, agents):
+def save_data(environment, rabbits):
     """"
     Write environment to CSV file,
     and Agent data to text file,
@@ -66,7 +69,7 @@ def save_data(environment, agents):
             unique += char
 
     ## Save Environment Data.
-    env_file = open(os.path.join('output_files', 'env_files', f'{unique}env_file.csv'), 'w')
+    env_file = open(os.path.join(sys.path[0], 'output_files', 'env_files', f'{unique}env_file.csv'), 'w')
     for row in environment:
         for value in row:
             env_file.write(str(value)+',')
@@ -79,11 +82,11 @@ def save_data(environment, agents):
         env_file.write('\n')
 
     ## Save Agent Data.
-    with open(os.path.join('output_files', 'store_file.txt'), 'a') as store_file:
+    with open(os.path.join(sys.path[0], 'output_files', 'store_file.txt'), 'a') as store_file:
         store_file.write('\n\n' + unique + '\n')
 
-        for i in range(len(agents)):
-            store_file.write(str(agents[i]) + ',')
+        for i in range(len(rabbits)):
+            store_file.write(str(rabbits[i]) + ',')
 
 
 
@@ -112,7 +115,7 @@ def run_model():
     ## but assume any word beginning with 'a' is a request to 'animate'.
     if animate.lower()[0] == "a":
         import visualize
-        visualize.show_plot(environment, agents, neighbourhood, num_of_iterations)
+        visualize.show_plot(environment, rabbits, neighbourhood, num_of_iterations)
         ### We import this as as a separate module only at this point,
         ### so that this script can be run without alteration
         ### on devices that do not support visualization,
@@ -120,7 +123,7 @@ def run_model():
 
     else:
         for i in range(num_of_iterations):
-            agents_interact(agents, neighbourhood)
+            rabbits_interact(rabbits, neighbourhood)
 
 
 
@@ -130,10 +133,10 @@ if __name__ == '__main__':
     ## Read parameters from command line
     ## (if none set, will set defaults as defined in read_cmd.py).
     parameters = read_cmd.parameters(argv)
-    num_of_agents, neighbourhood, num_of_iterations, animate = parameters
+    num_of_rabbits, lifespan, neighbourhood, num_of_iterations, animate = parameters
     report = f"""##### Initial Parameters #####
-    Number of Agents: {num_of_agents}
-    Neighbourhood: {neighbourhood}
+    Number of rabbits: {num_of_rabbits}
+    Lifespan: {lifespan}
     Number of Iterations: {num_of_iterations}
     """
     print(report)
@@ -148,9 +151,9 @@ if __name__ == '__main__':
     environment = agentframework.Environment(file).env
     print(f"Environment successfully created from {file}.")
     
-    ## Create agents.
-    agents = create_agents(environment, num_of_agents, scraped_coordinates)
-    print(f"You have successfuly created {num_of_agents} agents.")
+    ## Create rabbits.
+    rabbits = create_rabbits(environment, num_of_rabbits, scraped_coordinates, lifespan)
+    print(f"You have successfuly created {num_of_rabbits} rabbits.")
     
     ## Run model and time it.
     print("We are now going to run the model.")
@@ -158,17 +161,18 @@ if __name__ == '__main__':
     print(f"That took {time_result} seconds.")
 
     ## Save data.
-    save_data(environment, agents)
+    save_data(environment, rabbits)
     print(f"Data has been saved.")
 
     ## Record Test data.
     tech = platform.uname()
     print(f"Machine Details: {tech}.")
     
-    with open(os.path.join('output_files', 'time_file.csv'), 'a') as time_file:
+    with open(os.path.join(sys.path[0], 'output_files', 'time_file.csv'), 'a') as time_file:
         time_file.write('\n\n' + animate +  ','
-            + str(num_of_agents) + ','
+            + str(num_of_rabbits) + ','
             + str(neighbourhood) + ','
+            + str(lifespan) + ','
             + str(num_of_iterations) + ','
             + str(time_result) + ','
             + tech.node + ','

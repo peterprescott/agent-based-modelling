@@ -9,7 +9,7 @@ This project is the result of working through [the practical exercises](https://
 
 It is 'licensed' under the [The Unlicense](https://unlicense.org/), and available on [my Github](https://github.com/peterprescott/agent-based-modelling). 
 
-It is intended to be [run from the command line](https://www.howtogeek.com/437682/command-lines-why-do-people-still-bother-with-them/), though the project includes the beginnings of a Tkinter GUI, as well as a proof-of-concept of a web-page GUI with code written in JavaScript instead of Python.
+It is intended to be [run from the command line](https://www.howtogeek.com/437682/command-lines-why-do-people-still-bother-with-them/), though the project includes the beginnings of a Tkinter GUI, as well as a [proof-of-concept of a web-page GUI with code written in JavaScript](https://github.com/peterprescott/js-agent-modelling) instead of Python.
 
 <a name="install"></a>
 ## Installation
@@ -49,7 +49,7 @@ You should then see a visual animation of your model as it runs: specifically, w
 
 [![Visual animation of the model](https://geodemographics.co.uk/images/abm.gif)]
 
-You can specify the parameters with which the model runs from the command line.
+You can specify the parameters with which the model runs from the command line, in this order: num_of_agents, lifespan, neighbourhood, num_of_iterations. These must each be an integer value, otherwise the model will just run with default values.
 
 <a name="discuss"></a>
 ## Discussion
@@ -125,7 +125,7 @@ and then added a ```mate(range)``` function, as well as get_older() and die() fu
 
 ```
 
-These functions introduced the ideas of age, lifespan, sex, and being pregnant, so when a Rabbit is initialized, we add these properties to those inherited from its initialization as an Agent. We also used the ```names``` package to assign names to each rabbit.
+These functions introduced the ideas of age, lifespan, sex, and being pregnant, so when a Rabbit is initialized, we add these properties to those inherited from its initialization as an Agent. We also used [the ```names``` package](https://pypi.org/project/names/) to assign names to each rabbit.
 
 ```
     def __init__(self, env, agents, x, y, lifespan):
