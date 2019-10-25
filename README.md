@@ -1,10 +1,7 @@
 # Agent-Based Modelling in Python
 A project done as part of [the Data CDT](https://datacdt.org/)'s GEOG5995M/ENVS802 module: **Programming For Social Scientists**.
 
-Contents:
-[Intro](#intro)
-[Installation](#install)
-[Discussion](#discuss)
+Contents: [Intro](#intro). [Installation](#install). [Discussion](#discuss).
 
 <a name="intro"></a>
 ## Intro
