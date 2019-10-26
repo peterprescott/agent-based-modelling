@@ -228,5 +228,5 @@ At the moment all you have is agents interacting with the environment, and the r
 <a name="theory"></a>
 ## History & Theory
 
-The week that this project was due for submission, I also had the chance to give a short *Lightning Talk* on Agent-Based Modelling as a key technique in Geographic Data Science. You can see the slides [here](http://www.slideshare.net/slideshow/embed_code/key/).
+The week that this project was due for submission, I also had the chance to give a short *Lightning Talk* on Agent-Based Modelling as a key technique in Geographic Data Science. You can see the slides [here](https://www.slideshare.net/peterandtaryn/a-brief-introduction-to-agentbased-modelling).
 
