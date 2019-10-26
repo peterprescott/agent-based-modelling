@@ -10,7 +10,7 @@ This project is the result of working through [the practical exercises](https://
 
 It is 'licensed' under the [The Unlicense](https://unlicense.org/), and available on [my Github](https://github.com/peterprescott/agent-based-modelling). 
 
-It is intended to be [run from the command line](https://www.howtogeek.com/437682/command-lines-why-do-people-still-bother-with-them/), though the project includes the beginnings of a Tkinter GUI, as well as a [proof-of-concept of a web-page GUI with code written in JavaScript](https://github.com/peterprescott/js-agent-modelling) instead of Python.
+It is intended to be run from the command line, as "the command line has many great advantages that can really make you a more efficient and productive data scientist" ([Janssens 2014](https://www.datascienceatthecommandline.com/chapter-1-introduction.html)). However the project also includes the beginnings of a Tkinter GUI, as well as a [proof-of-concept of a web-page GUI with code written in JavaScript](https://github.com/peterprescott/js-agent-modelling) instead of Python. "
 
 <a name="install"></a>
 ## Installation
@@ -46,7 +46,7 @@ python run_model.py animate
 
 You should then see a visual animation of your model as it runs: specifically, white and black dots wobbling around on a yellowly-green square. The white dots represent male rabbits; the black dots female rabbits; the green square the grassy field in which the rabbits live, with the changing brightness corresponding to how much grass is in a particular spot.
 
-![Screenshot showing run_model.py animation](run_model.png)
+![Screenshot showing run_model.py animation](output_files/run_model.png)
 
 You can specify the parameters with which the model runs from the command line, in this order: *num_of_agents*, *lifespan*, *neighbourhood*, *num_of_iterations*. These must each be an integer value, otherwise the model will just run with default values.
 
@@ -223,7 +223,7 @@ class Agent {
 
 }
 ```
-At the moment all you have is agents interacting with the environment, and the rendering is rather glitchy as I haven't worked out how to use D3.js very well. But if anyone wants to develop it, they are free to [clone the repository and do so!](https://github.com/peterprescott/js-agent-modelling).
+At the moment all you have is agents interacting with the environment, and the rendering is rather glitchy as I haven't worked out how to use D3.js very well. Also instead of being read in from a given CSV file the environment is currently randomly generated. But if anyone wants to develop it, they are free to [clone the repository and do so!](https://github.com/peterprescott/js-agent-modelling).
 
 <a name="theory"></a>
 ## History & Theory
