@@ -159,7 +159,7 @@ class Rabbit(Agent):
         
         if self.energy < 0:
             self.die()
-            print(f"{self} died of starvation.")
+            # ~ print(f"{self} died of starvation.")
 
         Agent.eat(self)
             
@@ -173,9 +173,9 @@ class Rabbit(Agent):
                 self.energy -= 5
                 self.pregnant += 1
                 if self.pregnant == 10:
-					### create new baby rabbit
+                    ### create new baby rabbit
                     self.agents.append(Rabbit(self.environment, self.agents, self.x, self.y, self.lifespan))
-                    print(f'{self.name} gave birth.')
+                    # ~ print(f'{self.name} gave birth.')
                     self.pregnant = 0
             else:
                 for agent in self.agents:
@@ -189,7 +189,7 @@ class Rabbit(Agent):
         self.age += 1
         if self.age > self.lifespan:
             self.die()
-            print(f"{self} died of old age.")
+            # ~ print(f"{self} died of old age.")
 
     def die(self):
         """Rabbits die."""
@@ -199,8 +199,8 @@ class Rabbit(Agent):
             self.agents.pop(index)
         except ValueError:
             # I haven't worked out why, but sometimes this thows errors.
-            print('Something went wrong, but we will press on')
-
+            # ~ print('Something went wrong, but we will press on')
+            pass
 
 # If you have the time...
 class Fox(Agent):

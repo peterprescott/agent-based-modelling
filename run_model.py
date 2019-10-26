@@ -27,7 +27,7 @@ def create_rabbits(environment, num_of_rabbits, coordinates, lifespan):
 
     for i in range(num_of_rabbits):
         if i < len(coordinates):
-			# multiply by 3 to spread scraped coordinates across full 300 x 300 map
+            # multiply by 3 to spread scraped coordinates across full 300 x 300 map
             x = 3 * coordinates[i]["x"]
             y = 3 * coordinates[i]["y"]
         else:
@@ -43,7 +43,7 @@ def create_rabbits(environment, num_of_rabbits, coordinates, lifespan):
 def rabbits_interact(rabbits, neighbourhood=10):
     """Shuffle the rabbits and then make them interact."""
 
-    if len(rabbits)>0:
+    if len(rabbits) > 0:
         random.shuffle(rabbits)
         for agent in rabbits:
             agent.move()
@@ -123,7 +123,11 @@ def run_model():
 
     else:
         for i in range(num_of_iterations):
-            rabbits_interact(rabbits, neighbourhood)
+            print(f"Iteration: {i}/{num_of_iterations}; Rabbits: {len(rabbits)}")
+            if len(rabbits) == 0:
+                break
+            else:
+                rabbits_interact(rabbits, neighbourhood)
 
 
 
