@@ -35,7 +35,7 @@ If everything is working correctly, you should be told the *Initial Parameters* 
 
 If you are interested in testing the speed of the model with iterations of various orders of magnitude, then you can use the ```tests.sh``` or ```tests.bat``` script in the `tests` folder to do so efficiently. 
 
-[![asciicast](https://asciinema.org/a/WO9oNzJcxv3veBcjtm7FRpjEA.svg)](https://asciinema.org/a/WO9oNzJcxv3veBcjtm7FRpjEA.svg)
+[![asciicast](https://asciinema.org/a/WO9oNzJcxv3veBcjtm7FRpjEA.svg)](https://asciinema.org/a/WO9oNzJcxv3veBcjtm7FRpjEA)
 
 But you probably want to be able to **see** what your model is actually doing. We use [Matplotlib](https://matplotlib.org/) for the graphic visualization. You then run ```python run_model.py animate```, or just ```python run_model.py a``` if you're feeling lazy. (In fact, any word beginning with 'a' should do the trick!)
 
