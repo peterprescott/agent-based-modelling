@@ -57,7 +57,12 @@ def create_rabbits(environment, num_of_rabbits, coordinates, lifespan):
 
 
 def rabbits_interact(rabbits, neighbourhood=10):
-    """Shuffle the rabbits and then make them interact."""
+    """Shuffle the rabbits and then make them interact.
+    
+    Args:
+        rabbits: List of Rabbits.
+        neighbourhood: Integer representing distance at which Rabbits will mate.
+    """
 
     if len(rabbits) > 0:
         random.shuffle(rabbits)
@@ -80,7 +85,7 @@ def save_data(environment, rabbits):
     Args:
         environment: A list of equal-length lists of integers 
 		    representing quantities of grass in a field.
-        rabbits: list of Rabbits.
+        rabbits: List of Rabbits.
     """
 
     ## Create unique data stamp for filename.
@@ -113,7 +118,7 @@ def save_data(environment, rabbits):
 
 
 def my_timer(process):
-    """Time the process."""
+    """Decorator function to time the process."""
     def wrapper():
         ## Start timing.
         start = time.perf_counter()
