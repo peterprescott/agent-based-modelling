@@ -1,3 +1,7 @@
+"""An agent-based model demonstrating population dynamics of mating rabbits.
+
+This file is intended to be the main script run from the command line."""
+
 #~ run_model.py
 
 # Import any necessary libraries.
@@ -21,7 +25,15 @@ import web_scraper
 # Define independent pieces of our procedure as functions.
 
 def create_rabbits(environment, num_of_rabbits, coordinates, lifespan):
-    """Make the rabbits, passing in environment, num_of_rabbits, and initial coordinates."""
+    """Make new rabbits, and return them in a list.
+    
+    Args:
+		environment: A list of equal-length lists of integers 
+		    representing quantities of grass in a field.
+		num_of_rabbits: An integer specifying how many rabbits will be created.
+		coordinates: A list of dicts including "x" and "y" values.
+		lifespan: An integer specifying at what age these new rabbits will die.
+		"""
 
     rabbits = []
 
