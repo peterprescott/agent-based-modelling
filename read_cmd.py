@@ -1,3 +1,6 @@
+"""This module reads parameters for the model from the command line,
+and defines the default parameters if none are specified."""
+
 from sys import argv
 
 DEFAULT_NUM_OF_AGENTS = 25
@@ -7,7 +10,12 @@ DEFAULT_NUM_OF_ITERATIONS = 10**3
 
 def parameters(cmd_line_input):
     """Read parameters defined from command line,
-    or return with defaults if no explicit parameters set."""
+    or return with defaults if no explicit parameters set.
+    
+    Args:
+        cmd_line_input: List of strings read from command line by sys.argv.
+    
+    Return: Tuple (num_of_agents, lifespan, neighbourhood, num_of_iterations, animate)"""
 
     if len(cmd_line_input) < 6:
         animate = "DON'T ANIMATE"

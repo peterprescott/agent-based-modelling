@@ -3,7 +3,10 @@ import bs4
 
 def scrape(src):
     """
-    Scrape x and y values from online table found at {src}.
+    Scrape x and y values from online table found online.
+    
+    Args:
+        src: String representing URL.
     """
     # use requests (https://2.python-requests.org/en/master/user/quickstart/)...
     # to get the required webpage which is intended to be

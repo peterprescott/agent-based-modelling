@@ -9,11 +9,17 @@ import names
 
 class Environment:
     """
-    Transforms a CSV file into  a 2-d environment with which an agent can interact.
+    Transforms a CSV file into a 2-d environment with which an agent can interact.
+    
+    Attributes:
+        env: A list of equal-length lists of integers representing grass in a field.
     """
     
     def __init__(self, file):
-        """Initialize Environment"""
+        """Initialize Environment from a given CSV file.
+        
+        Args:
+            file: A CSV file of integers representing grass in a field."""
         
         environment = []
 
@@ -40,17 +46,35 @@ class Environment:
 
 
 class Agent:
-    """An Agent takes a random walk through a two-dimensional environment."""
+    """An Agent takes a random walk through a two-dimensional environment.
+    
+    Attributes:
+        environment: The environment in which the Agent is moving.
+            A list of equal-length lists of integers.
+        env_height: The height of the environment.
+        env_width: The width of the environment.
+        y: Integer. The Agent's y-coordinate within the environment.
+        x: Integer. The Agent's x-coordinate within the environment.
+        
+    """
     
     def __init__(self, env, agents, x, y):
-        """Initialize Agent."""
+        """Initialize Agent.
+        
+        Args:
+            env: The environment in which the Agent is moving.
+                 A list of equal-length lists of integers.
+            agents: The list of other Agents with which the Agent is interacting.
+            x: The Agent's initial x-coordinate within the environment.
+            y: The Agent's initial y-coordinate within the environment.
+        """
 
         self.environment = env
         self.env_height = len(env)
         self.env_width = len(env[0])
 
-        self._y = y
-        self._x = x
+        self.y = y
+        self.x = x
         self.step_size = 1
 
         self.energy = 30
@@ -58,37 +82,6 @@ class Agent:
         self.agents = agents
         
         self.colour = "white"
-
-
-    ## do the decent object oriented thing: https://docs.python.org/3/library/functions.html#property
-    def get_x(self):
-        """Get x coordinate of Agent."""
-        return self._x
-
-    def set_x(self, value):
-        """Set x coordinate of Agent."""
-        self._x = value
-
-    def del_x(self):
-        """Delete x coordinate of Agent."""
-        del self._x
-
-    x = property(get_x, set_x, del_x, "I'm the 'x' property.")
-
-    def get_y(self):
-        """Get y coordinate of Agent."""
-        return self._y
-
-    def set_y(self, value):
-        """Set y coordinate of Agent."""
-        self._y = value
-
-    def del_y(self):
-        """Delete y coordinate of Agent."""
-        del self._y
-
-    y = property(get_y, set_y, del_y, "I'm the 'y' property.")
-
 
     def move(self):
         """Move agent with random unit-sized step in each of two dimensions."""
@@ -117,7 +110,11 @@ class Agent:
             self.environment[self.x][self.y] = 0
             
     def distance_between(self,agent):
-        """Find Euclidean distance between this Agent and another Agent."""
+        """Find Euclidean distance between this Agent and another Agent.
+        
+        Args:
+            agent: Another Agent.
+        """
         
         distance_squared = (self.x-agent.x)**2 + (self.y-agent.y)**2
         distance = distance_squared**(1/2)
@@ -129,7 +126,16 @@ class Rabbit(Agent):
     """A Rabbit is an Agent that eats grass, reproduces, ages, and dies."""
     
     def __init__(self, env, agents, x, y, lifespan):
-        """Initialize Rabbit"""
+        """Initialize Rabbit.
+        
+        Args:
+            env: The environment in which the Agent is moving.
+                 A list of equal-length lists of integers.
+            agents: The list of other Agents with which the Agent is interacting.
+            x: Integer. The Agent's initial x-coordinate within the environment.
+            y: Integer. The Agent's initial y-coordinate within the environment.
+            lifespan: Integer value at which a Rabbit dies of old age.
+        """
         
         Agent.__init__(self, env, agents, x, y)
         
@@ -165,7 +171,11 @@ class Rabbit(Agent):
             
     def mate(self, range):
         """Mature female rabbits become pregnant whenever male is in range,
-        and then give birth after ten steps."""
+        and then give birth after ten steps.
+        
+        Args:
+            range: Integer. Distance within which Rabbits mate.
+        """
                 
         if self.sex == "female" and self.age > 10:
 
@@ -184,7 +194,7 @@ class Rabbit(Agent):
                             self.pregnant = 1
 
     def get_older(self):
-        """Rabbits age."""
+        """Rabbits age; and when their age exceeds their lifespan, they die."""
         
         self.age += 1
         if self.age > self.lifespan:
@@ -192,7 +202,7 @@ class Rabbit(Agent):
             # ~ print(f"{self} died of old age.")
 
     def die(self):
-        """Rabbits die."""
+        """When a Rabbit dies, it is removed from the list of living Rabbits."""
 
         try:
             index = self.agents.index(self)
@@ -204,7 +214,7 @@ class Rabbit(Agent):
 
 # If you have the time...
 class Fox(Agent):
-    """A Fox is an Agent that hunts rabbits and eats them."""
+    """TODO: A Fox is an Agent that hunts rabbits and eats them."""
     
        
     pass

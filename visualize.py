@@ -6,10 +6,19 @@ import matplotlib.animation
 
 from run_model import rabbits_interact
 
-save_gif = "YES"
+save_gif = "NO"
 
 def show_plot(environment, rabbits, neighbourhood, num_of_iterations):
-    """Shows animated plot of rabbits' movements."""
+    """Shows animated plot of rabbits' movements.
+    
+    Args:
+        environment: A list of equal-length lists of integers 
+		    representing quantities of grass in a field.
+        rabbits: List of Rabbits.
+        neighbourhood: Integer representing distance at which Rabbits will mate.
+        num_of_iterations: Integer. Maximum repetitions of agent interactions.
+        
+    """
 
     fig = plt.figure(figsize=(7, 7))
     
@@ -17,7 +26,7 @@ def show_plot(environment, rabbits, neighbourhood, num_of_iterations):
     running_time = num_of_iterations
 
     def update(frame_number):
-        """Updates the visualization."""
+        """Updates the visualization for matplotlib animation."""
 
         fig.clear()
         rabbit_count = len(rabbits)

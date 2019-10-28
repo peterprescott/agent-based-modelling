@@ -14,6 +14,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gui module" href="gui.html" />
+    <link rel="prev" title="agent-based-modelling" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,22 +39,46 @@
 <em class="property">class </em><code class="sig-prename descclassname">agentframework.</code><code class="sig-name descname">Agent</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">agents</em>, <em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Agent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An Agent takes a random walk through a two-dimensional environment.</p>
-<dl class="method">
-<dt id="agentframework.Agent.del_x">
-<code class="sig-name descname">del_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Agent.del_x" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete x coordinate of Agent.</p>
+<dl class="attribute">
+<dt id="agentframework.Agent.environment">
+<code class="sig-name descname">environment</code><a class="headerlink" href="#agentframework.Agent.environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>The environment in which the Agent is moving.
+A list of equal-length lists of integers.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="agentframework.Agent.del_y">
-<code class="sig-name descname">del_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Agent.del_y" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete y coordinate of Agent.</p>
+<dl class="attribute">
+<dt id="agentframework.Agent.env_height">
+<code class="sig-name descname">env_height</code><a class="headerlink" href="#agentframework.Agent.env_height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the environment.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="agentframework.Agent.env_width">
+<code class="sig-name descname">env_width</code><a class="headerlink" href="#agentframework.Agent.env_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>The width of the environment.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="agentframework.Agent.y">
+<code class="sig-name descname">y</code><a class="headerlink" href="#agentframework.Agent.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Integer. The Agent’s y-coordinate within the environment.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="agentframework.Agent.x">
+<code class="sig-name descname">x</code><a class="headerlink" href="#agentframework.Agent.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Integer. The Agent’s x-coordinate within the environment.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="agentframework.Agent.distance_between">
 <code class="sig-name descname">distance_between</code><span class="sig-paren">(</span><em class="sig-param">agent</em><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Agent.distance_between" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find Euclidean distance between this Agent and another Agent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>agent</strong> – Another Agent.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -62,45 +88,9 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="agentframework.Agent.get_x">
-<code class="sig-name descname">get_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Agent.get_x" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get x coordinate of Agent.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="agentframework.Agent.get_y">
-<code class="sig-name descname">get_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Agent.get_y" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get y coordinate of Agent.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="agentframework.Agent.move">
 <code class="sig-name descname">move</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Agent.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Move agent with random unit-sized step in each of two dimensions.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="agentframework.Agent.set_x">
-<code class="sig-name descname">set_x</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Agent.set_x" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set x coordinate of Agent.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="agentframework.Agent.set_y">
-<code class="sig-name descname">set_y</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Agent.set_y" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set y coordinate of Agent.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="agentframework.Agent.x">
-<em class="property">property </em><code class="sig-name descname">x</code><a class="headerlink" href="#agentframework.Agent.x" title="Permalink to this definition">¶</a></dt>
-<dd><p>I’m the ‘x’ property.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="agentframework.Agent.y">
-<em class="property">property </em><code class="sig-name descname">y</code><a class="headerlink" href="#agentframework.Agent.y" title="Permalink to this definition">¶</a></dt>
-<dd><p>I’m the ‘y’ property.</p>
 </dd></dl>
 
 </dd></dl>
@@ -109,14 +99,20 @@
 <dt id="agentframework.Environment">
 <em class="property">class </em><code class="sig-prename descclassname">agentframework.</code><code class="sig-name descname">Environment</code><span class="sig-paren">(</span><em class="sig-param">file</em><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Environment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Transforms a CSV file into  a 2-d environment with which an agent can interact.</p>
+<p>Transforms a CSV file into a 2-d environment with which an agent can interact.</p>
+<dl class="attribute">
+<dt id="agentframework.Environment.env">
+<code class="sig-name descname">env</code><a class="headerlink" href="#agentframework.Environment.env" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of equal-length lists of integers representing grass in a field.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="agentframework.Fox">
 <em class="property">class </em><code class="sig-prename descclassname">agentframework.</code><code class="sig-name descname">Fox</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">agents</em>, <em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Fox" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#agentframework.Agent" title="agentframework.Agent"><code class="xref py py-class docutils literal notranslate"><span class="pre">agentframework.Agent</span></code></a></p>
-<p>A Fox is an Agent that hunts rabbits and eats them.</p>
+<p>TODO: A Fox is an Agent that hunts rabbits and eats them.</p>
 </dd></dl>
 
 <dl class="class">
@@ -127,7 +123,7 @@
 <dl class="method">
 <dt id="agentframework.Rabbit.die">
 <code class="sig-name descname">die</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Rabbit.die" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rabbits die.</p>
+<dd><p>When a Rabbit dies, it is removed from the list of living Rabbits.</p>
 </dd></dl>
 
 <dl class="method">
@@ -139,7 +135,7 @@
 <dl class="method">
 <dt id="agentframework.Rabbit.get_older">
 <code class="sig-name descname">get_older</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Rabbit.get_older" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rabbits age.</p>
+<dd><p>Rabbits age; and when their age exceeds their lifespan, they die.</p>
 </dd></dl>
 
 <dl class="method">
@@ -147,6 +143,11 @@
 <code class="sig-name descname">mate</code><span class="sig-paren">(</span><em class="sig-param">range</em><span class="sig-paren">)</span><a class="headerlink" href="#agentframework.Rabbit.mate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mature female rabbits become pregnant whenever male is in range,
 and then give birth after ten steps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>range</strong> – Integer. Distance within which Rabbits mate.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -166,7 +167,7 @@ and then give birth after ten steps.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Rabbit Population ABM</a></h1>
+<h1 class="logo"><a href="contents.html">Rabbit Population ABM</a></h1>
 
 
 
@@ -176,11 +177,27 @@ and then give birth after ten steps.</p>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">agent-based-modelling</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">agentframework module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read_cmd.html">read_cmd module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_model.html">run_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize.html">visualize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_scraper.html">web_scraper module</a></li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="contents.html">Documentation overview</a><ul>
+  <li><a href="modules.html">agent-based-modelling</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">agent-based-modelling</a></li>
+      <li>Next: <a href="gui.html" title="next chapter">gui module</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

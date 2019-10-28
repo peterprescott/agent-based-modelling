@@ -15,7 +15,7 @@ from run_model import create_rabbits, rabbits_interact, save_data
 from agentframework import Environment
         
 def update(frame_number):
-    """Updates the visualization."""
+    """Updates the visualization for matplotlib."""
 
     fig.clear()
     matplotlib.pyplot.imshow(environment, vmin=0, vmax=max(max(environment)))
@@ -28,7 +28,7 @@ def update(frame_number):
         matplotlib.pyplot.scatter(agent.y, agent.x, c=agent.colour[0])
 
 def run():
-    """Run the Graphical User Interface."""
+    """Runs the Graphical User Interface."""
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=num_of_iterations, repeat=False)
     canvas.draw()
 

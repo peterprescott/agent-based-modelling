@@ -14,6 +14,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="run_model module" href="run_model.html" />
+    <link rel="prev" title="gui module" href="gui.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -32,11 +34,19 @@
             
   <div class="section" id="module-read_cmd">
 <span id="read-cmd-module"></span><h1>read_cmd module<a class="headerlink" href="#module-read_cmd" title="Permalink to this headline">¶</a></h1>
+<p>This module reads parameters for the model from the command line,
+and defines the default parameters if none are specified.</p>
 <dl class="function">
 <dt id="read_cmd.parameters">
 <code class="sig-prename descclassname">read_cmd.</code><code class="sig-name descname">parameters</code><span class="sig-paren">(</span><em class="sig-param">cmd_line_input</em><span class="sig-paren">)</span><a class="headerlink" href="#read_cmd.parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read parameters defined from command line,
 or return with defaults if no explicit parameters set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cmd_line_input</strong> – List of strings read from command line by sys.argv.</p>
+</dd>
+</dl>
+<p>Return: Tuple (num_of_agents, lifespan, neighbourhood, num_of_iterations, animate)</p>
 </dd></dl>
 
 </div>
@@ -48,7 +58,7 @@ or return with defaults if no explicit parameters set.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Rabbit Population ABM</a></h1>
+<h1 class="logo"><a href="contents.html">Rabbit Population ABM</a></h1>
 
 
 
@@ -58,11 +68,27 @@ or return with defaults if no explicit parameters set.</p>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">agent-based-modelling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="agentframework.html">agentframework module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">gui module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">read_cmd module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_model.html">run_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize.html">visualize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_scraper.html">web_scraper module</a></li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="contents.html">Documentation overview</a><ul>
+  <li><a href="modules.html">agent-based-modelling</a><ul>
+      <li>Previous: <a href="gui.html" title="previous chapter">gui module</a></li>
+      <li>Next: <a href="run_model.html" title="next chapter">run_model module</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
