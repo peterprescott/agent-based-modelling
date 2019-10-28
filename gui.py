@@ -28,6 +28,7 @@ def update(frame_number):
         matplotlib.pyplot.scatter(agent.y, agent.x, c=agent.colour[0])
 
 def run():
+    """Run the Graphical User Interface."""
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=num_of_iterations, repeat=False)
     canvas.draw()
 

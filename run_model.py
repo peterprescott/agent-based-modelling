@@ -55,7 +55,7 @@ def rabbits_interact(rabbits, neighbourhood=10):
 
 
 def save_data(environment, rabbits):
-    """"
+    """
     Write environment to CSV file,
     and Agent data to text file,
     and test data to CSV file.
